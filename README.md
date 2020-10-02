@@ -108,11 +108,11 @@ Successfully created/updated stack - chkp-jayden-dev-serverless-app in None
 Your serverless application has been deployed.
 ```
 
-Now that your cloudformation stack has been deployed, you also have a Lambda function now. Go to AWS Web Console => Cloudformation Tempalte, and take note the ARN of the stack that has just been created. We'll need it later. (It looks like this:  arn:aws:cloudformation:ap-southeast-1:116489363094:stack/chkp-serverless-app/a6d77c70-048a-11eb-8438-02e7c9cae2dc)
+Now that your cloudformation stack has been deployed, you also have a Lambda function now. Go to AWS Web Console => Cloudformation => Stacks, and take note the ARN of the stack that has just been created. We'll need it later. (It looks like this:  arn:aws:cloudformation:ap-southeast-1:116489363094:stack/chkp-serverless-app/a6d77c70-048a-11eb-8438-02e7c9cae2dc)
 
-## Buildspec.yml
+## buildspec.yml
 
-In the Buildsepc.yml, Replace the following values with your own (without []):
+In the buildsepc.yml, replace the following values with your own (without []):
 
 1. AWS_REGION=[Your REGION]
 2. S3_BUCKET=[YOUR BUCKET NAME]
