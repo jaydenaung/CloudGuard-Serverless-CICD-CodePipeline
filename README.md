@@ -48,7 +48,65 @@ Download the sam_deploy.sh script from this git repo to your local directory, an
 ./sam_deploy.sh
 ```
 
-Expectred output
+Expectred output:
+
+```
+./sam_deploy.sh
+Enter S3 Bucket Name: chkp-jayden-serverless-apps-source
+Enter Your CFT Stack Name: chkp-jayden-dev-serverless-app
+[Task 1] Packaging your serverless application based on template.yml
+Uploading to c3e4be0a0b3cbe688e90f2b571a38f47  373 / 373.0  (100.00%)
+
+Successfully packaged artifacts and wrote output template to file out.yml.
+Execute the following command to deploy the packaged template
+sam deploy --template-file /Users/jaydenaung/git/serverless/dev-serverless-repo/out.yml --stack-name <YOUR STACK NAME>
+
+[Task 2] Deploying your application now..
+
+	Deploying with following values
+	===============================
+	Stack name                 : chkp-jayden-dev-serverless-app
+	Region                     : None
+	Confirm changeset          : False
+	Deployment s3 bucket       : None
+	Capabilities               : ["CAPABILITY_IAM"]
+	Parameter overrides        : {}
+
+Initiating deployment
+=====================
+
+Waiting for changeset to be created..
+
+CloudFormation stack changeset
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Operation                                                 LogicalResourceId                                         ResourceType                                            
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
++ Add                                                     helloFromLambdaFunctionRole                               AWS::IAM::Role                                          
++ Add                                                     helloFromLambdaFunction                                   AWS::Lambda::Function                                   
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Changeset created successfully. arn:aws:cloudformation:ap-southeast-1:116489363094:changeSet/samcli-deploy1601635751/a1274a36-42d3-4225-b021-cb3c1fc5d839
+
+
+2020-10-02 18:49:22 - Waiting for stack create/update to complete
+
+CloudFormation events from changeset
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ResourceStatus                             ResourceType                               LogicalResourceId                          ResourceStatusReason                     
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE_IN_PROGRESS                         AWS::IAM::Role                             helloFromLambdaFunctionRole                -                                        
+CREATE_IN_PROGRESS                         AWS::IAM::Role                             helloFromLambdaFunctionRole                Resource creation Initiated              
+CREATE_COMPLETE                            AWS::IAM::Role                             helloFromLambdaFunctionRole                -                                        
+CREATE_IN_PROGRESS                         AWS::Lambda::Function                      helloFromLambdaFunction                    -                                        
+CREATE_IN_PROGRESS                         AWS::Lambda::Function                      helloFromLambdaFunction                    Resource creation Initiated              
+CREATE_COMPLETE                            AWS::Lambda::Function                      helloFromLambdaFunction                    -                                        
+CREATE_COMPLETE                            AWS::CloudFormation::Stack                 chkp-jayden-dev-serverless-app             -                                        
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Successfully created/updated stack - chkp-jayden-dev-serverless-app in None
+
+Your serverless application has been deployed.
+```
 
 
 
