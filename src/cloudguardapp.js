@@ -2,11 +2,12 @@
  * A Lambda function that returns a static string
  */
 exports.cloudguardHandler = async () => {
-    // If you change this message, you will need to change cloudguard.test.js
-    const message = 'Serverless Apps secured by CloudGuard Workload!';
+    // If you change this message, you will need to change cloudguardapp.test.js
+    const message = 'This serverless app 2 is protected by CloudGuard!';
 
     // All log statements are written to CloudWatch
     console.info(`${message}`);
+    
     
     return message;
 }

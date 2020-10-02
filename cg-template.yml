@@ -22,12 +22,50 @@ Resources:
   helloFromLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/cloudguardapp.cloudguardHandler
+      Handler: src/handlers/hello-from-lambda.helloFromLambdaHandler
       Runtime: nodejs12.x
-      #CodeUri: ./src/cloudguardapp.js
       MemorySize: 128
       Timeout: 100
       Description: A Lambda function that returns a static string.
       Policies:
         # Give Lambda basic execution Permission to the helloFromLambda
         - AWSLambdaBasicExecutionRole
+
+        AWSTemplateFormatVersion: 2010-09-09
+        Description: cloudguard-serverless-app
+        Resources:
+          CloudguardFunction:
+            Type: 'AWS::Lambda::Function'
+            Properties:
+              Code:
+                S3Bucket: chkp-jayden-serverless-apps-source
+                S3Key: serverless-dev
+              Description: A Lambda function that returns a static string.
+              Tags:
+                - Value: SAM
+                  Key: 'lambda:createdBy'
+              MemorySize: 128
+              Handler: src/handlers/hello-from-lambda.helloFromLambdaHandler
+              Role: !GetAtt 
+                - CloudguardFunctionRole
+                - Arn
+              Timeout: 100
+              Runtime: nodejs12.x
+          CloudguardFunctionRole:
+            Type: 'AWS::IAM::Role'
+            Properties:
+              AssumeRolePolicyDocument:
+                Version: 2012-10-17
+                Statement:
+                  - Action:
+                      - 'sts:AssumeRole'
+                    Effect: Allow
+                    Principal:
+                      Service:
+                        - lambda.amazonaws.com
+              ManagedPolicyArns:
+                - 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+              Tags:
+                - Value: SAM
+                  Key: 'lambda:createdBy'
+                  

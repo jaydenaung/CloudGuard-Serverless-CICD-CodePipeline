@@ -8,28 +8,27 @@ phases:
       - pip install --upgrade awscli
   pre_build:
     commands:
-      # Discover and run unit tests in the '__tests__' directory..feel free to enable..
-      # - npm run test
+      # Discover and run unit tests in the '__tests__' directory
+      #- npm run test
       # Remove all unit tests to reduce the size of the package that will be ultimately uploaded to Lambda
-      # - rm -rf ./__tests__
+      #- rm -rf ./__tests__
       # Remove all dependencies not needed for the Lambda deployment package (the packages from devDependencies in package.json)
-      # - npm prune --production
+      #- npm prune --production
   build:
     commands:
       # Install the CloudGuard Workload CLI Plugin
       - npm install -g https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz
       # Set your AWS region variable
-      - export  AWS_REGION=us-east-1
+      - export AWS_REGION=ap-southeast-1
       # Configure the CloudGuard Workload Proact security on the SAM template
       - cloudguard proact -m template.yml
       # Set the S3 bucket name variable
-      - export S3_BUCKET=chkp-jayden-serverless
+      - export S3_BUCKET=chkp-jayden-serverless-apps-source
       # Use AWS SAM to package the application by using AWS CloudFormation
       - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml
-    commands:
+   # commands:
       # Add the FSP Runtime security to the deployed function. Please replace with the function cloudformation arn!
-      - cloudguard fsp -c  <cloudformation stack arn>
-
+      - cloudguard fsp -c arn:aws:cloudformation:ap-southeast-1:116489363094:stack/cloudguard-serverless-app-1/94c4df50-02d2-11eb-82b7-0a475a749b56
 artifacts:
   type: zip
   files:
