@@ -2,12 +2,20 @@
 
 This project contains source code and supporting files for a serverless application that you can deploy with the AWS Serverless Application Model (AWS SAM) command line interface (CLI). It includes the following files and folders:
 
+#Pre-requisites
+You need the following tools on your computer:
+
+* AWS CLI [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
+* AWS SAM CLI - [Install the AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html).
+* Node.js - [Install Node.js 12](https://nodejs.org/en/), including the npm package management tool.
+* Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community).
+
+## Deploy the serverless application
 First you'll need to create a Codecommit on AWS
 
 ```bash
 aws codecommit create-repository --repository-name cloudguard-serverless-cicd-codepipeline --repository-description "CloudGuard Serverless CICD Pipeline Demo Pipeline"
 ```
-
 
 Then you'll need to do 'git clone your codepipline reop' via either SSH or HTTP.  It'll be an empty repository first. Then you will need to download the soure files (zip) into your local repo [here](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html) 
 
@@ -18,7 +26,7 @@ Then you'll need to do 'git clone your codepipline reop' via either SSH or HTTP.
 Locate the `template.yml` file in this project. You can update the template to add AWS resources through the same deployment process that updates your application code.
 
 
-## Deploy the sample application
+### Deploy the sample application
 
 You'll need to create an S3 bucket.
 
@@ -26,18 +34,6 @@ You'll need to create an S3 bucket.
 aws s3 mb s3://Your-Bucket-Name
 ```
 
-To use the AWS SAM CLI, you need the following tools:
-
-* AWS SAM CLI - [Install the AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html).
-* Node.js - [Install Node.js 12](https://nodejs.org/en/), including the npm package management tool.
-* Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community).
-
-To build and deploy your application for the first time, run the following in your shell:
-
-```bash
-sam build
-sam deploy --guided
-```
 
 The first command will build the source of your application. The second command will package and deploy your application to AWS, with a series of prompts:
 
