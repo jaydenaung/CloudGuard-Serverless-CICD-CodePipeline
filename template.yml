@@ -24,7 +24,7 @@ Resources:
     Properties:
       Handler: src/cloudguardapp.cloudguardHandler
       Runtime: nodejs12.x
-      #CodeUri: ./src/cloudguardapp.js
+      CodeUri: ./src/cloudguardapp.js
       MemorySize: 128
       Timeout: 100
       Description: A Lambda function that returns a static string.

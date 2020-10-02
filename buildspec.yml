@@ -28,7 +28,7 @@ phases:
       - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml
    # commands:
       # Add the FSP Runtime security to the deployed function. Please replace with the function cloudformation arn!
-      - cloudguard fsp -c arn:aws:cloudformation:ap-southeast-1:116489363094:stack/cloudguard-serverless-app-1/94c4df50-02d2-11eb-82b7-0a475a749b56
+      - cloudguard fsp -c arn:aws:cloudformation:ap-southeast-1:116489363094:stack/dev-chkp-cloudguard-serverless-app/a6d77c70-048a-11eb-8438-02e7c9cae2dc
 artifacts:
   type: zip
   files:
