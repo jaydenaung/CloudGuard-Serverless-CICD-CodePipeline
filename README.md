@@ -40,7 +40,7 @@ aws s3 mb s3://Your-Bucket-Name
 ```
 
 
-### Deploy the serverless application user sam_deploy.sh
+### Deploy the serverless application user [sam_deploy.sh](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/sam_deploy.sh)
 
 Download the sam_deploy.sh script from this git repo to your local directory, and run it. 
 
@@ -48,7 +48,7 @@ Download the sam_deploy.sh script from this git repo to your local directory, an
 ./sam_deploy.sh
 ```
 
-Expectred output:
+Expected output:
 
 ```
 ./sam_deploy.sh
@@ -108,10 +108,55 @@ Successfully created/updated stack - chkp-jayden-dev-serverless-app in None
 Your serverless application has been deployed.
 ```
 
+Now that your cloudformation stack has been deployed, you also have a Lambda function now. Go to AWS Web Console => Cloudformation Tempalte, and take note the ARN of the stack that has just been created. We'll need it later. (It looks like this:  arn:aws:cloudformation:ap-southeast-1:116489363094:stack/chkp-serverless-app/a6d77c70-048a-11eb-8438-02e7c9cae2dc)
 
+## Buildspec.yml
 
+In the Buildsepc.yml, Replace the following values with your own (without []):
 
-## Add a resource to your application
+1. AWS_REGION=[Your REGION]
+2. S3_BUCKET=[YOUR BUCKET NAME]
+3. cloudguard fsp -c [The ARN of Your Cloudformation stack you just took note of]
+
+```
+version: 0.2
+
+phases:
+  install:
+    commands:
+      # Install all dependencies (including dependencies for running tests)
+      - npm install
+      - pip install --upgrade awscli
+  pre_build:
+    commands:
+      # Discover and run unit tests in the '__tests__' directory
+      #- npm run test
+      # Remove all unit tests to reduce the size of the package that will be ultimately uploaded to Lambda
+      #- rm -rf ./__tests__
+      # Remove all dependencies not needed for the Lambda deployment package (the packages from devDependencies in package.json)
+      #- npm prune --production
+  build:
+    commands:
+      # Install the CloudGuard Workload CLI Plugin
+      - npm install -g https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz
+      # Set your AWS region variable
+      - export AWS_REGION=[Your REGION]
+      # Configure the CloudGuard Workload Proact security on the SAM template
+      - cloudguard proact -m template.yml
+      # Set the S3 bucket name variable
+      - export S3_BUCKET=[YOUR BUCKET NAME]
+      # Use AWS SAM to package the application by using AWS CloudFormation
+      - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml
+   # commands:
+      # Add the FSP Runtime security to the deployed function. Please replace with the function cloudformation arn!
+      - cloudguard fsp -c [The ARN of Your Cloudformation stack you just took note of]
+artifacts:
+  type: zip
+  files:
+    - template-export.yml
+```
+
+## Create a codepipeline
 
 The application template uses AWS SAM to define application resources. AWS SAM is an extension of AWS CloudFormation with a simpler syntax for configuring common serverless application resources, such as functions, triggers, and APIs. For resources that aren't included in the [AWS SAM specification](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md), you can use the standard [AWS CloudFormation resource types](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html).
 
