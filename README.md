@@ -1,6 +1,6 @@
 # cloudguard-serverless-app (Jayden)
 
-This project contains source code and supporting files for a serverless application that you can deploy with the AWS Serverless Application Model (AWS SAM) command line interface (CLI). It includes the following files and folders:
+This project contains source code (zip) and supporting files for a serverless application that you can deploy with the command line interface (CLI) and scripts. We're gonna deploy a sample serverless application. Let's get started
 
 #Pre-requisites
 You need the following tools on your computer:
@@ -10,8 +10,16 @@ You need the following tools on your computer:
 * Node.js - [Install Node.js 12](https://nodejs.org/en/), including the npm package management tool.
 * Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community).
 
+AWS roles needed to be created for the following services:
+
+* CodeBuild
+* CodeDeploy
+* CodePipeline 
+
+The roles will be created as part of creating a codepipeline. Please take note that the role used by codebulid requires permission to access to a number of AWS resources such as S3. 
+
 ## Deploy the serverless application
-First you'll need to create a Codecommit on AWS
+First you'll need to create a Codecommit on AWS. You can do it on AWS web console or you can just execute the following command.
 
 ```bash
 aws codecommit create-repository --repository-name cloudguard-serverless-cicd-codepipeline --repository-description "CloudGuard Serverless CICD Pipeline Demo Pipeline"
@@ -21,12 +29,9 @@ Then you'll need to do 'git clone your codepipline reop' via either SSH or HTTP.
 
 - Unzip the source files
 - Remove the zip file
-- Then you'll need to do `git init`, `git add -A`, `git commit -m "your message"` and `git push`
+- Then you'll need to do `git init`, `git add -A`, `git commit -m "Your message"` and `git push`
 
 Locate the `template.yml` file in this project. You can update the template to add AWS resources through the same deployment process that updates your application code.
-
-
-### Deploy the sample application
 
 You'll need to create an S3 bucket.
 
@@ -35,31 +40,18 @@ aws s3 mb s3://Your-Bucket-Name
 ```
 
 
-The first command will build the source of your application. The second command will package and deploy your application to AWS, with a series of prompts:
+### Deploy the serverless application user sam_deploy.sh
 
-* **Stack Name**: The name of the stack to deploy to CloudFormation. This should be unique to your account and region, and a good starting point would be something matching your project name.
-* **AWS Region**: The AWS region you want to deploy your app to.
-* **Confirm changes before deploy**: If set to yes, any change sets will be shown to you before execution for manual review. If set to no, the AWS SAM CLI will automatically deploy application changes.
-* **Allow SAM CLI IAM role creation**: Many AWS SAM templates, including this example, create AWS IAM roles required for the AWS Lambda function(s) included to access AWS services. By default, these are scoped down to minimum required permissions. To deploy an AWS CloudFormation stack which creates or modified IAM roles, the `CAPABILITY_IAM` value for `capabilities` must be provided. If permission isn't provided through this prompt, to deploy this example you must explicitly pass `--capabilities CAPABILITY_IAM` to the `sam deploy` command.
-* **Save arguments to samconfig.toml**: If set to yes, your choices will be saved to a configuration file inside the project, so that in the future you can just re-run `sam deploy` without parameters to deploy changes to your application.
-
-## Use the AWS SAM CLI to build and test locally
-
-Build your application by using the `sam build` command.
+Download the sam_deploy.sh script from this git repo to your local directory, and run it. 
 
 ```bash
-my-application$ sam build
+./sam_deploy.sh
 ```
 
-The AWS SAM CLI installs dependencies that are defined in `package.json`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
+Expectred output
 
-Test a single function by invoking it directly with a test event. An event is a JSON document that represents the input that the function receives from the event source. Test events are included in the `events` folder in this project.
 
-Run functions locally and invoke them with the `sam local invoke` command.
 
-```bash
-my-application$ sam local invoke helloFromLambdaFunction --no-event
-```
 
 ## Add a resource to your application
 
