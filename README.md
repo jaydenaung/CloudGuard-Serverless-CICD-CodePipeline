@@ -4,7 +4,9 @@ This project contains source code and supporting files for a serverless applicat
 
 First you'll need to create a Codecommit on AWS
 
-- `aws codecommit create-repository --repository-name cloudguard-serverless-cicd-codepipeline --repository-description "CloudGuard Serverless CICD Pipeline Demo Pipeline"` 
+```bash
+aws codecommit create-repository --repository-name cloudguard-serverless-cicd-codepipeline --repository-description "CloudGuard Serverless CICD Pipeline Demo Pipeline"
+```
 
 
 Then you'll need to do 'git clone your codepipline reop' via either SSH or HTTP.  It'll be an empty repository first. Then you will need to download the soure files (zip) into your local repo [here](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html) 
