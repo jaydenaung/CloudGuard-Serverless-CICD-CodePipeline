@@ -29,6 +29,7 @@ The roles will be created as part of creating a codepipeline. Please take note t
 We'll need to do the followings;
 
 1. Create AWS CodeCommit repo
+(Yes if you'd like to follow along my ALL-AWS tutorial, you'll need to create a CodeCommit repo which will be used in CICD pipeline. In this Github repo, I've uploaded Nodejs application source code zip file, buildspec.yml, and other scripts)
 2. Create a Codepipeline
 3. Integrate CloudGuard to protect the serverless app at build stage
 4. Observe that any change in the codecommit repo will trigger the pipeline, and in the build stage, CloudGuard will be enabled and integrated to the serverless application
