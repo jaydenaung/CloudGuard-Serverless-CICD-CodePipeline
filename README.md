@@ -94,7 +94,7 @@ aws s3 mb s3://Your-Bucket-Name
 
 ### 2. Deploy a sample serverless application [sam_deploy.sh](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/sam_deploy.sh)
 
-Now is the time to deploy your serverless application. You can either use SAM command line to deploy or download the sam_deploy.sh script from this git repo to your local directory, and just execute it. Please take note that this script will only work if you have SAM CLI installed. It will ask for the following:
+Now is the time to deploy your serverless application. You can either use SAM command line to deploy or download the sam_deploy.sh script from this git repo to your local directory, and just execute it. Please take note that this script will only work if you have SAM CLI installed. Once executed, the script will ask for the following:
 
 1. Your S3 Bucket Name (The one that you've just created.)
 2. Your Cloudformation Stack name 
