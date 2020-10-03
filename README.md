@@ -93,7 +93,7 @@ aws s3 mb s3://Your-Bucket-Name
 
 ### 2. Deploy a sample serverless application [sam_deploy.sh](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/sam_deploy.sh)
 
-Download the sam_deploy.sh script from this git repo to your local directory, and run it. 
+Now is the time to deploy your serverless application. You can either use SAM command line to deploy or download the sam_deploy.sh script from this git repo to your local directory, and just execute it. 
 
 ```bash
 ./sam_deploy.sh
