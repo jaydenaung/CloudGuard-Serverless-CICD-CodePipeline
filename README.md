@@ -247,6 +247,10 @@ In Deploy stage, we'll have to do the following;
 
 Your pipeline has been created. Any change in your source code in AWS Codecommit will trigger the pipeline. In build stage, CloudGuard will protect the serverless application by enabling Proact, and FSP which will be added to the Lambda function as a layer.
 
+You can check and verify that each stage of your CodePipline has been successfully completed!
+
+![header image](img/8-codepipeline-succeded.png) 
+
 ## Verification of CloudGuard protection
 
 On AWS Console, go to "Lambda", and the function that we've enabled the protection on. Verify that a layer has been added to the function.
