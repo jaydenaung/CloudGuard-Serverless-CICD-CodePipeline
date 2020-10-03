@@ -162,7 +162,20 @@ artifacts:
 
 Now that we have a  let's create a codepipeline.
 
+1. Go to "Codepipeline" on AWS console
+2. Create Pipeline
+3. Enter your pipeline's name
+4. If you already have an existing role, choose it. Or create a new role.
+
 ![header image](img/1-codepipeline-initial.png) 
+
+Then we can add source.
+
+![header image](img/2-codepipeline-source.png) 
+
+We need to configure the build environment.
+
+![header image](img/3-codepipeline-build.png) 
 
 ## Cleanup
 
