@@ -612,3 +612,8 @@ aws cloudformation delete-stack --stack-name cloudguard-serverless-app
 ## Resources
 
 1. [Check Point CloudGuard Workload Protection](https://www.checkpoint.com/products/workload-protection/#:~:text=CloudGuard%20Workload%20Protection%2C%20part%20of,automating%20security%20with%20minimal%20overhead.)
+
+2. [CloudGuard Workload CICD Integration](https://sc1.checkpoint.com/documents/CloudGuard_Dome9/Documentation/Serverless/Serverless_CICD_Plugin.htm?tocpath=Serverless%7C_____4)
+
+
+![header image](img/cloudguard.png) 
