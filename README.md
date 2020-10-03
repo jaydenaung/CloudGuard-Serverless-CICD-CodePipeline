@@ -74,7 +74,7 @@ __tests__              cloudguard-config.json
 buildspec.yml          my-pipeline.json       package.json           src
 $
 ``` 
-### cloudguard-config.json
+### [cloudguard-config.json](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/cloudguard-config.json)
 
 In build stage, this JSON file will be used by CloudGuard for authentication purpose. You'll need to generate CloudGuard API key and API secrets on CloudGuard console. In "cloudguard-config.json", replace the dummy values with your API key and secrets. 
 
@@ -167,7 +167,7 @@ Now that your cloudformation stack has been deployed, you also have a Lambda fun
 
 We'll need the ARN of the cloudformation stack as well. Go to AWS Web Console => Cloudformation => Stacks, and take note the ARN of the stack that has just been created. (It looks like this:  arn:aws:cloudformation:ap-southeast-1:116489363094:stack/chkp-serverless-app/a6d77c70-048a-11eb-8438-02e7c9cae2dc)
 
-## buildspec.yml
+## [buildspec.yml](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/buildspec.yml)
 
 Buildspec.yml instructs CodeBuild in build stage in terms of what to do. So this an important configuration file. In the buildsepc.yml, replace the following values with your own values (without []):
 
