@@ -160,6 +160,8 @@ artifacts:
 
 ## Create a codepipeline
 
+### Codepipeline - Initial setting
+
 Now that we have a  let's create a codepipeline.
 
 1. Go to "Codepipeline" on AWS console
@@ -167,29 +169,57 @@ Now that we have a  let's create a codepipeline.
 3. Enter your pipeline's name
 4. If you already have an existing role, choose it. Or create a new role.
 
-### Codepipeline - Initial setting
-
 ![header image](img/1-codepipeline-initial.png) 
 
 ### Codepipeline - Source
 Then we can add source.
+
+1. Choose "CodeCommit" (You can use Github or any code repo. If you're following along my tutorial, choose CodeCommit.)
+2. Choose Repository name - the CodeCommit repo that you've created earlier.
+3. Choose Master Branch
+4. For change detection, Choose "CloudWatch Events".
 
 ![header image](img/2-codepipeline-source.png) 
 
 ### Codepipeline - Build Stage
 We need to configure the build environment.
 
+1. Choose "CodeBuild" & choose your region.
+2. If you don't already have a codebuild project, choose "Create Project".
+
+
 ![header image](img/3-codepipeline-build.png) 
 
+In CodeBuild windows, do the following;
+
+1. Enter your project name
+2. Choose "Managed Image" and "Ubuntu" as Operating system
+
 ![header image](img/4-codepipeline-build-1.png) 
+
+3. Choose "Standard" & "Standard:3.0" (It's totally up to you to choose actually. But this setting works for Nodejs 12.x apps)
+4. Check "Privileged ...." checkbox
+5. Choose an existing role or create a new service role.
+
+```
+Now, please take note that codebuild role requires permissions to access a number of AWS services including Lambda, Cloudformation template and IAM. You will encounter issues while Codebuild is building the app.
+```
 
 ![header image](img/5-codepipeline-build-2.png) 
 
 ### Codepipeline - Deploy Stage 
 
+In Deploy stage, we'll have to do the following;
+
+1. Choose "Cloudformation" as Deploy Provider 
+2. Choose your region
+3. Action mode: "Create or update a stack" (You can also use ChangeSet)
+4. Stack Name: **Choose the CFT Stack that you've created for your Lambda function**
+5. As for Artifacts, Enter "template-export.yml" as defined in buildspec.yml.
+
 ![header image](img/6-codepipeline-deploy.png) 
 
-![header image](7-codepipeline-deploy-2.png) 
+![header image](img/7-codepipeline-deploy-2.png) 
 
 Your pipeline has been created. Any change in your source code in AWS Codecommit will trigger the pipeline. In build stage, CloudGuard will protect the serverless application by enabling Proact, and FSP which will be added to the Lambda function as a layer.
 
@@ -200,7 +230,7 @@ To delete the sample application that you created, use the AWS CLI. Assuming you
 ### Delete the pipeline
 
 ```bash
-aws datapipeline delete-pipeline --pipeline-id df-EXAMPLEID
+aws codepipeline delete-pipeline --name MyPipeline
 ```
 
 ```bash
