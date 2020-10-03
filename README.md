@@ -167,15 +167,31 @@ Now that we have a  let's create a codepipeline.
 3. Enter your pipeline's name
 4. If you already have an existing role, choose it. Or create a new role.
 
-![header image](img/1-codepipeline-initial.png) 
+### Codepipeline - Initial setting
 
+![header image](img/1-codepipeline-initial) 
+
+### Codepipeline - Source
 Then we can add source.
 
 ![header image](img/2-codepipeline-source.png) 
 
+### Codepipeline - Build Stage
 We need to configure the build environment.
 
 ![header image](img/3-codepipeline-build.png) 
+
+![header image](img/4-codepipeline-build-1.png) 
+
+![header image](img/5-codepipeline-build-2.png) 
+
+### Codepipeline - Deploy Stage 
+
+![header image](img/6-codepipeline-deploy.png) 
+
+![header image](7-codepipeline-deploy-2.png) 
+
+Your pipeline has been created. Any change in your source code in AWS Codecommit will trigger the pipeline. In build stage, CloudGuard will protect the serverless application by enabling Proact, and FSP which will be added to the Lambda function as a layer.
 
 ## Cleanup
 
