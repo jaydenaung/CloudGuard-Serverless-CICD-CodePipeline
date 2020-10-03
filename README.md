@@ -14,6 +14,11 @@ You need the following tools on your computer:
 * Node.js - [Install Node.js 12](https://nodejs.org/en/), including the npm package management tool.
 * Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community).
 
+###CloudGuard CSPM Account
+
+* CloudGuard Account (https://secure.dome9.com/v2)
+* CloudGuard API and API Secret 
+
 AWS roles needed to be created for the following services:
 
 * CodeCommit
@@ -24,7 +29,7 @@ AWS roles needed to be created for the following services:
 
 The roles will be created as part of creating a codepipeline. Please take note that the role used by codebulid requires permission to access to a number of AWS resources such as S3. 
 
-## What exactly we wil be doing
+## What exactly we will be doing
 
 We'll need to do the followings;
 
@@ -46,9 +51,27 @@ Then you'll need to do 'git clone your codepipline reop' via either SSH or HTTP.
 
 - Unzip the source files (It will create a folder. You'll need to move the files from that folder to root directory.)
 - Remove the zip file (and the empty folder)
+
+
+- Download the following files from this GitHub repo to your CodeCommit local directory.
+
+1. buildspec.yml
+2. sam_deploy.sh
+3. cloudguard-config.json 
+4. my-pipeline.json (Optional)
+5. You may add .gitignore & README.md if you'd like
+
 - Then you'll need to do `git init`, `git add -A`, `git commit -m "Your message"` and `git push`
 
-Locate the `template.yml` file in this project. You can update the template to add AWS resources through the same deployment process that updates your application code.
+You should see the following files and folders in your **CodeCommit Repo**. 
+
+```bash
+$ ls
+README.md              node_modules           template.yml
+__tests__              cloudguard-config.json    
+buildspec.yml          my-pipeline.json       package.json           src
+$
+``` 
 
 You'll need to create an S3 bucket.
 
