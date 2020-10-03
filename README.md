@@ -287,7 +287,7 @@ Your pipeline has been created. Any change in your source code in AWS Codecommit
 At this point any change to the Lambda code will trigger the pipeline. You can observe the "Build" stage and see that Proact and FSP have been enabled on the function.
 
 
-In your local Codecommit repo, go to "src\cloudguard.js"
+In your local Codecommit repo, go to "src\cloudguardapp.js"
 
 And change the **const message** to something else. 
 
@@ -308,7 +308,10 @@ exports.cloudguardHandler = async () => {
 ```
 - Then, commit and push it again. This will trigger the pipeline change. Then obsere the activities on Pipeline on the AWS Console.
 
+![header image]('src/codepipeline-status.png)
+
 ### Codebuild Output
+
 ```bash
 [Container] 2020/10/03 02:46:04 Waiting for agent ping
 [Container] 2020/10/03 02:46:06 Waiting for DOWNLOAD_SOURCE
