@@ -35,7 +35,7 @@ We'll need to do the followings;
 
 1. Create AWS CodeCommit repo \
 (Yes if you'd like to follow along my ALL-AWS tutorial, you'll need to create a CodeCommit repo which will be used in CICD pipeline. In this Github repo, I've uploaded Nodejs application source code zip file, buildspec.yml, and other scripts)
-2. Deploy the serverless application using SAM
+2. Deploy a sample serverless application 
 3. Create a Codepipeline
 4. Integrate CloudGuard to protect the serverless app at build stage
 5. Test Your CodePipeline - Observe that any change in the codecommit repo will trigger the pipeline, and in the build stage, CloudGuard will be enabled and integrated to the serverless application
@@ -81,7 +81,7 @@ aws s3 mb s3://Your-Bucket-Name
 ```
 
 
-### 2. Deploy the serverless application user [sam_deploy.sh](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/sam_deploy.sh)
+### 2. Deploy a sample serverless application [sam_deploy.sh](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/sam_deploy.sh)
 
 Download the sam_deploy.sh script from this git repo to your local directory, and run it. 
 
