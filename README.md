@@ -243,6 +243,29 @@ In Deploy stage, we'll have to do the following;
 
 Your pipeline has been created. Any change in your source code in AWS Codecommit will trigger the pipeline. In build stage, CloudGuard will protect the serverless application by enabling Proact, and FSP which will be added to the Lambda function as a layer.
 
+## Verification of CloudGuard protection
+
+On AWS Console, go to "Lambda", and the function that we've enabled the protection on. Verify that a layer has been added to the function.
+
+![header image](img/aws-lambda-function-layer.png) 
+
+
+You can log on to your CloudGuard console, and go to the Serverless module. Check the Lambda function
+
+![header image](img/cloudguard-1.png) 
+
+## Code Injection Attack Simulation
+
+In a scenario where you expose Lambda function via HTTP endpoints provided by API Gateway, your serverless application is vulnerable to numerous code injection attacks. If you've turned on Function Self-Protection (FSP) on CloudGuard for that particular Lambda function, your application can be secured and protected by CloudGuard when it's in runtime.
+
+In below example, I've simulated a simple code injection attack using curl. And you can see that the attack wasn't successful. (Internal Server Error)
+
+![header image](img/attack-blocked.png) 
+
+> On CloudGuard, you can see that the code injection attack was **blocked** by CloudGuard. 
+
+![header image](img/cloudguard-alert.png) 
+
 ## Cleanup
 
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
