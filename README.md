@@ -1,8 +1,8 @@
-# CloudGuard integration with CICD pipeline on AWS Codepipeline
+# CloudGuard integration with CICD pipeline on AWS using Codepieline
 
 While serverless functions are becoming more and more popular with cloud-native application developments, we've also started seeing  security challenges that come with the hype. Serverless applications are at risk of [OWASP top ten application attacks](https://owasp.org/www-project-serverless-top-10/) because these applications are running even without a managed server, they will still execute code. If the code is written in a manner that doesn't follow security best practices, or if the function is using excessive permissions, they can be vulnerable to a wide range of security attacks.
 
-In this tutorial, I'll do a walk-thorugh of how we can use CloudGuard workload protection to secure your serverless applications. CloudGuard workload protection can assess your Lambda code for vulnerabilties and embedded credentials, excessive permissions, and enable active protection/workload firewall for your serverless workloads. 
+In this tutorial, I'll do a walk-thorugh of how we can use CloudGuard workload protection to secure your serverless applications, and integrate with your CICD pipeline. CloudGuard workload protection can assess your Lambda code for vulnerabilties and embedded credentials, excessive permissions, and enable active protection/workload firewall for your serverless workloads. When integrated with CICD pipeline, CloudGuard can continously protect your serverless application upon every new release.
 
 This project contains source code (zip) of a sample serverless application that you can deploy with the command line interface (CLI) and scripts. Let's get started.
 
