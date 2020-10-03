@@ -20,6 +20,16 @@ AWS roles needed to be created for the following services:
 
 The roles will be created as part of creating a codepipeline. Please take note that the role used by codebulid requires permission to access to a number of AWS resources such as S3. 
 
+## What exactly we wil be doing
+
+We'll need to do the followings;
+
+1. Create AWS CodeCommit repo
+2. Create a Codepipeline
+3. Integrate CloudGuard to protect the serverless app at build stage
+4. Observe that any change in the codecommit repo will trigger the pipeline, and in the build stage, CloudGuard will be enabled and integrated to the serverless application
+5. Verify that Proact and FSP for the serverless application are enabled on the CloudGuard console.
+
 ## Create a CodeCommit Repository
 First you'll need to create a Codecommit on AWS. You can do it on AWS web console or you can just execute the following command.
 
