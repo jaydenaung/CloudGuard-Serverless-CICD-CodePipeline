@@ -76,7 +76,7 @@ $
 ``` 
 ### [cloudguard-config.json](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/cloudguard-config.json)
 
-In build stage, this JSON file will be used by CloudGuard for authentication purpose. You'll need to generate CloudGuard API key and API secrets on CloudGuard console. In "cloudguard-config.json", replace the dummy values with your API key and secrets. 
+cloudguard-config.json is CloudGuard's activation token, and includes CloudGuard's API key and API secrets. In build stage, this file will be used by CloudGuard for authentication purpose. You'll need to generate CloudGuard API key and API secrets on CloudGuard console. Download  "cloudguard-config.json" from my Git repo, and replace the dummy values with your API key and secrets. 
 
 ```
 {
