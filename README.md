@@ -169,7 +169,7 @@ Now that we have a  let's create a codepipeline.
 
 ### Codepipeline - Initial setting
 
-![header image](img/1-codepipeline-initial) 
+![header image](img/1-codepipeline-initial.png) 
 
 ### Codepipeline - Source
 Then we can add source.
@@ -196,6 +196,12 @@ Your pipeline has been created. Any change in your source code in AWS Codecommit
 ## Cleanup
 
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
+
+### Delete the pipeline
+
+```bash
+aws datapipeline delete-pipeline --pipeline-id df-EXAMPLEID
+```
 
 ```bash
 aws cloudformation delete-stack --stack-name cloudguard-serverless-app
