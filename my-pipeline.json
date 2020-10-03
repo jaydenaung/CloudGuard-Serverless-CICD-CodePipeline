@@ -1,6 +1,6 @@
 {
     "pipeline": {
-        "name": "cloudguard-app-pipeline",
+        "name": "cloudguard-app-pipeline-dev",
         "roleArn": "arn:aws:iam::116489363094:role/service-role/AWSCodePipelineServiceRole-ap-southeast-1-cloudguard-app-pipeli",
         "artifactStore": {
             "type": "S3",

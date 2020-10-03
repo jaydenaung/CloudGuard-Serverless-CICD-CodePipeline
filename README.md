@@ -25,7 +25,7 @@ First you'll need to create a Codecommit on AWS. You can do it on AWS web consol
 aws codecommit create-repository --repository-name cloudguard-serverless-cicd-codepipeline --repository-description "CloudGuard Serverless CICD Pipeline Demo Pipeline"
 ```
 
-Then you'll need to do 'git clone your codepipline reop' via either SSH or HTTP.  It'll be an empty repository first. Then you will need to download the soure files (zip) into your local repo [here](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html) 
+Then you'll need to do 'git clone your codepipline reop' via either SSH or HTTP.  It'll be an empty repository first. Then you will need to download the soure files (zip) into your local repo [here](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/dev-serverless.zip) 
 
 - Unzip the source files
 - Remove the zip file
@@ -108,7 +108,9 @@ Successfully created/updated stack - chkp-jayden-dev-serverless-app in None
 Your serverless application has been deployed.
 ```
 
-Now that your cloudformation stack has been deployed, you also have a Lambda function now. Go to AWS Web Console => Cloudformation => Stacks, and take note the ARN of the stack that has just been created. We'll need it later. (It looks like this:  arn:aws:cloudformation:ap-southeast-1:116489363094:stack/chkp-serverless-app/a6d77c70-048a-11eb-8438-02e7c9cae2dc)
+Now that your cloudformation stack has been deployed, you also have a Lambda function now. You can test the Lambda fucntion on AWS web console. 
+
+We'll need the ARN of the cloudformation stack as well. Go to AWS Web Console => Cloudformation => Stacks, and take note the ARN of the stack that has just been created. (It looks like this:  arn:aws:cloudformation:ap-southeast-1:116489363094:stack/chkp-serverless-app/a6d77c70-048a-11eb-8438-02e7c9cae2dc)
 
 ## buildspec.yml
 
@@ -158,6 +160,9 @@ artifacts:
 
 ## Create a codepipeline
 
+Now that we have a  let's create a codepipeline.
+
+![header image](img/1-codepipeline-initial.png) 
 
 ## Cleanup
 
