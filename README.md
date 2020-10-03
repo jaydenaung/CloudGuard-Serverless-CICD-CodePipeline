@@ -76,7 +76,7 @@ $
 ``` 
 ### cloudguard-config.json
 
-You'll need to generate CloudGuard API key and API secrets on CloudGuard console. In "cloudguard-config.json", replace the dummy values with your API key and secrets. 
+In build stage, this JSON file will be used by CloudGuard for authentication purpose. You'll need to generate CloudGuard API key and API secrets on CloudGuard console. In "cloudguard-config.json", replace the dummy values with your API key and secrets. 
 
 ```
 {
@@ -94,7 +94,10 @@ aws s3 mb s3://Your-Bucket-Name
 
 ### 2. Deploy a sample serverless application [sam_deploy.sh](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/sam_deploy.sh)
 
-Now is the time to deploy your serverless application. You can either use SAM command line to deploy or download the sam_deploy.sh script from this git repo to your local directory, and just execute it. 
+Now is the time to deploy your serverless application. You can either use SAM command line to deploy or download the sam_deploy.sh script from this git repo to your local directory, and just execute it. Please take note that this script will only work if you have SAM CLI installed. It will ask for the following:
+
+1. Your S3 Bucket Name (The one that you've just created.)
+2. Your Cloudformation Stack name 
 
 ```bash
 ./sam_deploy.sh
@@ -166,7 +169,7 @@ We'll need the ARN of the cloudformation stack as well. Go to AWS Web Console =>
 
 ## buildspec.yml
 
-In the buildsepc.yml, replace the following values with your own values (without []):
+Buildspec.yml instructs CodeBuild in build stage in terms of what to do. So this an important configuration file. In the buildsepc.yml, replace the following values with your own values (without []):
 
 1. AWS_REGION=[Your REGION]
 2. S3_BUCKET=[YOUR BUCKET NAME]
@@ -231,7 +234,7 @@ Now that we have a  let's create a codepipeline.
 
 ![header image](img/1-codepipeline-initial.png) 
 
-### CodePipeline - Source
+### CodePipeline - Source Stage
 Then we can add source.
 
 1. Choose "CodeCommit" (You can use Github or any code repo. If you're following along my tutorial, choose CodeCommit.)
@@ -608,7 +611,7 @@ aws cloudformation delete-stack --stack-name cloudguard-serverless-app
 
 1. One of the issues you might probably encounter in CodePipeline is the build stage might fail due to IAM insufficient permissions. Double check that sufficient IAM permissions are given to the role.
 
-2. Make sure that required software is installed. (e.g. AWS CLI, SAM, Nodejs)
+2. Make sure that all required software & dependencies are installed. (e.g. AWS CLI, SAM, Nodejs)
 
 ## Resources
 
