@@ -308,7 +308,7 @@ exports.cloudguardHandler = async () => {
 ```
 - Then, commit and push it again. This will trigger the pipeline change. Then obsere the activities on Pipeline on the AWS Console.
 
-![header image]('src/codepipeline-status.png)
+![header image](img/codepipeline-status.png)
 
 ### Codebuild Output
 
