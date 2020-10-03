@@ -1,4 +1,4 @@
-# cloudguard-serverless-app (Jayden)
+# CloudGuard integration with CICD pipeline on AWS Codepipeline
 
 This project contains source code (zip) and supporting files for a serverless application that you can deploy with the command line interface (CLI) and scripts. We're gonna deploy a sample serverless application. Let's get started
 
@@ -12,13 +12,15 @@ You need the following tools on your computer:
 
 AWS roles needed to be created for the following services:
 
+* CodeCommit
 * CodeBuild
 * CodeDeploy
-* CodePipeline 
+* CodePipeline
+* Lambda Function 
 
 The roles will be created as part of creating a codepipeline. Please take note that the role used by codebulid requires permission to access to a number of AWS resources such as S3. 
 
-## Deploy the serverless application
+## Create a CodeCommit Repository
 First you'll need to create a Codecommit on AWS. You can do it on AWS web console or you can just execute the following command.
 
 ```bash
@@ -27,8 +29,8 @@ aws codecommit create-repository --repository-name cloudguard-serverless-cicd-co
 
 Then you'll need to do 'git clone your codepipline reop' via either SSH or HTTP.  It'll be an empty repository first. Then you will need to download the soure files (zip) into your local repo [here](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/dev-serverless.zip) 
 
-- Unzip the source files
-- Remove the zip file
+- Unzip the source files (It will create a folder. You'll need to move the files from that folder to root directory.)
+- Remove the zip file (and the empty folder)
 - Then you'll need to do `git init`, `git add -A`, `git commit -m "Your message"` and `git push`
 
 Locate the `template.yml` file in this project. You can update the template to add AWS resources through the same deployment process that updates your application code.
@@ -158,7 +160,15 @@ artifacts:
     - template-export.yml
 ```
 
-## Create a codepipeline
+## Create a Codepipeline
+
+Now if you're like me who likes to do things using CLI, you can edit "my-pipeline.json" which you can find in this repo, and execute the following CLI.
+
+```bash
+aws codepipeline create-pipeline --cli-input-json file://my-pipeline.json
+```
+
+Otherwise, please follow the step-by-step guide to create a Codepipeline.
 
 ### Codepipeline - Initial setting
 
@@ -201,9 +211,9 @@ In CodeBuild windows, do the following;
 4. Check "Privileged ...." checkbox
 5. Choose an existing role or create a new service role.
 
-```
-Now, please take note that codebuild role requires permissions to access a number of AWS services including Lambda, Cloudformation template and IAM. You will encounter issues while Codebuild is building the app.
-```
+
+> Now, please take note that codebuild role requires permissions to access a number of AWS services including Lambda, Cloudformation template and IAM. You will encounter issues while Codebuild is building the app.
+
 
 ![header image](img/5-codepipeline-build-2.png) 
 
