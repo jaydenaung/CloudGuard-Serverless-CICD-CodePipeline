@@ -534,9 +534,13 @@ On AWS Console, go to "Lambda", and the function that we've enabled the protecti
 
 You can log on to your CloudGuard console, and go to the Serverless module or Protected Assets. Check your Lambda function.
 
+**Congratulations!** You've successfully integrated CloudGuard workload protection into CICD pipeline on AWS!
+
 ![header image](img/cloudguard-1.png) 
 
 ## Code Injection Attack Simulation
+
+Initially, this section wasn't part of the tutorial. However, I'd like to share how CLoudGuard workload protection responds to attacks like code injection when Function Self-Protection (FSP) is turned on. So I added this.
 
 In a scenario where you expose Lambda function via HTTP endpoints provided by API Gateway, your serverless application is vulnerable to numerous code injection attacks. If you've turned on Function Self-Protection (FSP) on CloudGuard for that particular Lambda function, your application can be secured and protected by CloudGuard workload protection. CloudGuard will block active code injection attacks when the application is in runtime.
 
