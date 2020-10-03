@@ -35,12 +35,13 @@ We'll need to do the followings;
 
 1. Create AWS CodeCommit repo \
 (Yes if you'd like to follow along my ALL-AWS tutorial, you'll need to create a CodeCommit repo which will be used in CICD pipeline. In this Github repo, I've uploaded Nodejs application source code zip file, buildspec.yml, and other scripts)
-2. Create a Codepipeline
-3. Integrate CloudGuard to protect the serverless app at build stage
-4. Observe that any change in the codecommit repo will trigger the pipeline, and in the build stage, CloudGuard will be enabled and integrated to the serverless application
-5. Verify that Proact and FSP for the serverless application are enabled on the CloudGuard console.
+2. Deploy the serverless application using SAM
+3. Create a Codepipeline
+4. Integrate CloudGuard to protect the serverless app at build stage
+5. Test Your CodePipeline - Observe that any change in the codecommit repo will trigger the pipeline, and in the build stage, CloudGuard will be enabled and integrated to the serverless application
+6. Verification of CloudGuard protection - Verify that Proact and FSP for the serverless application are enabled on the CloudGuard console.
 
-## Create a CodeCommit Repository
+## 1. Create a CodeCommit Repository
 First you'll need to create a Codecommit on AWS. You can do it on AWS web console or you can just execute the following command.
 
 ```bash
@@ -80,7 +81,7 @@ aws s3 mb s3://Your-Bucket-Name
 ```
 
 
-### Deploy the serverless application user [sam_deploy.sh](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/sam_deploy.sh)
+### 2. Deploy the serverless application user [sam_deploy.sh](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/sam_deploy.sh)
 
 Download the sam_deploy.sh script from this git repo to your local directory, and run it. 
 
@@ -198,7 +199,7 @@ artifacts:
     - template-export.yml
 ```
 
-## Create a Codepipeline
+## 3. Create a Codepipeline
 
 Now if you're like me who likes to do things using CLI, you can edit "my-pipeline.json" which you can find in this repo, and execute the following CLI.
 
@@ -271,11 +272,13 @@ In Deploy stage, we'll have to do the following;
 
 Your pipeline has been created. Any change in your source code in AWS Codecommit will trigger the pipeline. In build stage, CloudGuard will protect the serverless application by enabling Proact, and FSP which will be added to the Lambda function as a layer.
 
+## 5. Test your Codepipeline - Release Change
+
 You can check and verify that each stage of your CodePipline has been successfully completed!
 
 ![header image](img/8-codepipeline-succeded.png) 
 
-## Verification of CloudGuard protection
+## 6. Verification of CloudGuard protection
 
 On AWS Console, go to "Lambda", and the function that we've enabled the protection on. Verify that a layer has been added to the function.
 
