@@ -579,9 +579,9 @@ You can log on to your CloudGuard console, and go to the Serverless module or Pr
 
 Initially, this section wasn't part of the tutorial. However, I'd like to share how CLoudGuard workload protection responds to attacks like code injection when Function Self-Protection (FSP) is turned on. So I added this.
 
-In a scenario where you expose Lambda function via HTTP endpoints provided by API Gateway, your serverless application is vulnerable to numerous code injection attacks. If you've turned on Function Self-Protection (FSP) on CloudGuard for that particular Lambda function, your application can be secured and protected by CloudGuard workload protection. CloudGuard will block active code injection attacks when the application is in runtime.
+In a scenario where you expose Lambda function via HTTP endpoints provided by API Gateway, your serverless application can be vulnerable to numerous code injection attacks. If you've turned on Function Self-Protection (FSP) on CloudGuard for that particular Lambda function, your application can be secured and protected by CloudGuard workload protection. CloudGuard will block code injection attacks when the application is in runtime.
 
-In below example, I've simulated a simple code injection attack using curl. And you can see that the attack wasn't successful. (Internal Server Error)
+In below example, I've simulated a simple code injection attack using curl. And you can see that the attack wasn't successful when  Function Self Protection (Or Function Runtime Protection) is enabled on the function. (Internal Server Error)
 
 ![header image](img/attack-blocked.png) 
 
@@ -612,8 +612,6 @@ aws cloudformation delete-stack --stack-name cloudguard-serverless-app
 ## Resources
 
 1. [Check Point CloudGuard Workload Protection](https://www.checkpoint.com/products/workload-protection/#:~:text=CloudGuard%20Workload%20Protection%2C%20part%20of,automating%20security%20with%20minimal%20overhead.)
-
-2. [CloudGuard Workload CICD Integration](https://sc1.checkpoint.com/documents/CloudGuard_Dome9/Documentation/Serverless/Serverless_CICD_Plugin.htm?tocpath=Serverless%7C_____4)
 
 
 ![header image](img/cloudguard.png) 
