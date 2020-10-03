@@ -284,8 +284,31 @@ Your pipeline has been created. Any change in your source code in AWS Codecommit
 
 ## 5. Test your Codepipeline - Release Change
 
-You can observe the "Build" stage and see that Proact and FSP have been enabled on the function.
+At this point any change to the Lambda code will trigger the pipeline. You can observe the "Build" stage and see that Proact and FSP have been enabled on the function.
 
+
+In your local Codecommit repo, go to "src\cloudguard.js"
+
+And change the **const message** to something else. 
+
+```
+/**
+ * A Lambda function that returns a static string
+ */
+exports.cloudguardHandler = async () => {
+    // If you change this message, you will need to change cloudguardapp.test.js
+    const message = 'This serverless app 2 is protected by CloudGuard!';
+
+    // All log statements are written to CloudWatch
+    console.info(`${message}`);
+    
+    
+    return message;
+}
+```
+- Then, commit and push it again. This will trigger the pipeline change. Then obsere the activities on Pipeline on the AWS Console.
+
+### Codebuild Output
 ```bash
 [Container] 2020/10/03 02:46:04 Waiting for agent ping
 [Container] 2020/10/03 02:46:06 Waiting for DOWNLOAD_SOURCE
@@ -575,6 +598,12 @@ aws codepipeline delete-pipeline --name MyPipeline
 ```bash
 aws cloudformation delete-stack --stack-name cloudguard-serverless-app
 ```
+
+## Issues
+
+1. One of the issues you might probably encounter in CodePipeline is the build stage might fail due to IAM permissions. Double check that sufficient IAM permissions are given to the role.
+
+2. Make sure that required software is installed. (e.g. AWS CLI, SAM, Nodejs)
 
 ## Resources
 
