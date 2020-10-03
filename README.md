@@ -4,7 +4,7 @@ While serverless functions are becoming more and more popular with cloud-native 
 
 In this tutorial, I'll do a walk-thorugh of how we can use CloudGuard workload protection to secure your serverless applications. CloudGuard workload protection can assess your Lambda code for vulnerabilties and embedded credentials, excessive permissions, and enable active protection/workload firewall for your serverless workloads. 
 
-This project contains source code (zip) and supporting files for a serverless application that you can deploy with the command line interface (CLI) and scripts. We're gonna deploy a sample serverless application. Let's get started
+This project contains source code (zip) of a sample serverless application that you can deploy with the command line interface (CLI) and scripts. Let's get started.
 
 #Pre-requisites
 You need the following tools on your computer:
