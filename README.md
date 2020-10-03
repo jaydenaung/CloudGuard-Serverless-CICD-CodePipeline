@@ -591,7 +591,8 @@ In below example, I've simulated a simple code injection attack using curl. And 
 
 ## Cleanup
 
-To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
+To delete the sample application that you created, you can just use the AWS CLI. You'll need to delete the CodePipeline as well as the cloudformation stack.
+
 
 ### Delete the pipeline
 
