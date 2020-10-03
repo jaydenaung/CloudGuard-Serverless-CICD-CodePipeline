@@ -14,7 +14,7 @@ You need the following tools on your computer:
 * Node.js - [Install Node.js 12](https://nodejs.org/en/), including the npm package management tool.
 * Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community).
 
-###CloudGuard CSPM Account
+### CloudGuard CSPM Account
 
 * CloudGuard Account (https://secure.dome9.com/v2)
 * CloudGuard API and API Secret 
