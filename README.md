@@ -274,7 +274,7 @@ Your pipeline has been created. Any change in your source code in AWS Codecommit
 
 ## 5. Test your Codepipeline - Release Change
 
-You can check and verify that each stage of your CodePipline has been successfully completed!
+You can observe the "Build" stage and see that Proact and FSP have been enabled on the function.
 
 ```bash
 [Container] 2020/10/03 02:46:04 Waiting for agent ping
@@ -519,6 +519,9 @@ Protego - FSP (1.5.19) Summary:
 [Container] 2020/10/03 02:48:13 Expanding template-export.yml
 [Container] 2020/10/03 02:48:13 Found 1 file(s)
 ```
+
+Finally, you can check and verify that each stage of your CodePipline has been successfully completed!
+
 
 ![header image](img/8-codepipeline-succeded.png) 
 
