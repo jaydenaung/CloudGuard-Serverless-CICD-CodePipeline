@@ -2,7 +2,7 @@
 
 While serverless functions are becoming more and more popular with cloud-native application developments, we've also started seeing  security challenges that come with the hype. Serverless applications are at risk of [OWASP top ten application attacks](https://owasp.org/www-project-serverless-top-10/). Even when serverless applications are running without a managed server, they will still execute code. If the code is written in a manner that doesn't follow security best practices, or if the function is using excessive permissions, they can be vulnerable to a wide range of security attacks.
 
-In this tutorial, I'll do a walk-through of how we can use CloudGuard workload protection to secure your serverless applications, and integrate with your CICD pipeline. CloudGuard workload protection can assess your Lambda code for vulnerabilities and embedded sensitive credentials, excessive permissions being used by functions, and enable active protection & workload firewall for your serverless workloads. When integrated with CICD pipeline, CloudGuard can continuously protect your serverless application upon every new release.
+In this tutorial, I'll do a step-by-step walk-through of how CloudGuard workload protection can secure your serverless applications, and integrate with your CICD pipeline. CloudGuard workload protection can assess your Lambda code for vulnerabilities and embedded sensitive credentials, excessive permissions being used by functions, and enable active protection & workload firewall for your serverless workloads. When integrated with CICD pipeline, CloudGuard can continuously protect your serverless application upon every new release.
 
 This project contains source code (zip) of a sample serverless application that you can deploy with the command line interface (CLI) and scripts. Let's get started.
 
@@ -582,7 +582,7 @@ You can log on to your CloudGuard console, and go to the Serverless module or Pr
 
 Initially, this section wasn't part of the tutorial. However, I'd like to share how CLoudGuard workload protection responds to attacks like code injection when Function Self-Protection (FSP) is turned on. So I added this.
 
-In a scenario where you expose Lambda function via HTTP endpoints provided by API Gateway, your serverless application can be vulnerable to numerous code injection attacks. If you've turned on Function Self-Protection (FSP) on CloudGuard for that particular Lambda function, your application can be secured and protected by CloudGuard workload protection. CloudGuard will block code injection attacks when the application is in runtime.
+In a scenario where you expose Lambda function via HTTP endpoints provided by API Gateway, your serverless application can be vulnerable to numerous code injection attacks. If you've turned on Function Self-Protection (FSP) on CloudGuard for that particular Lambda function, your application can be secured and protected by CloudGuard workload protection. CloudGuard will block code injection attacks when the application is at runtime.
 
 In below example, I've simulated a simple code injection attack using curl. And you can see that the attack wasn't successful when  Function Self Protection (Or Function Runtime Protection) is enabled on the function. (Internal Server Error)
 
