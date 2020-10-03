@@ -1,5 +1,9 @@
 # CloudGuard integration with CICD pipeline on AWS Codepipeline
 
+While serverless functions are becoming more and more popular with cloud-native application developments, we've also started seeing  security challenges that come with the hype. Serverless applications are also at risk of [OWASP top ten application vulnerabilities](https://owasp.org/www-project-serverless-top-10/) because they will still execute code. If the code is written in a manner that doesn't follow security best practices, or if the function is using excessive permissions, they can be vulnerable to a wide range of security attacks.
+
+In this tutorial, I'll do a walk-thorugh of how we can use CloudGuard workload protection to secure your serverless applications. CloudGuard workload protection can assess your Lambda code for vulnerabilties and embedded credentials, excessive permissions, and enable active protection/workload firewall for your serverless workloads. 
+
 This project contains source code (zip) and supporting files for a serverless application that you can deploy with the command line interface (CLI) and scripts. We're gonna deploy a sample serverless application. Let's get started
 
 #Pre-requisites
@@ -250,13 +254,13 @@ On AWS Console, go to "Lambda", and the function that we've enabled the protecti
 ![header image](img/aws-lambda-function-layer.png) 
 
 
-You can log on to your CloudGuard console, and go to the Serverless module. Check the Lambda function
+You can log on to your CloudGuard console, and go to the Serverless module or Protected Assets. Check your Lambda function.
 
 ![header image](img/cloudguard-1.png) 
 
 ## Code Injection Attack Simulation
 
-In a scenario where you expose Lambda function via HTTP endpoints provided by API Gateway, your serverless application is vulnerable to numerous code injection attacks. If you've turned on Function Self-Protection (FSP) on CloudGuard for that particular Lambda function, your application can be secured and protected by CloudGuard when it's in runtime.
+In a scenario where you expose Lambda function via HTTP endpoints provided by API Gateway, your serverless application is vulnerable to numerous code injection attacks. If you've turned on Function Self-Protection (FSP) on CloudGuard for that particular Lambda function, your application can be secured and protected by CloudGuard workload protection. CloudGuard will block active code injection attacks when the application is in runtime.
 
 In below example, I've simulated a simple code injection attack using curl. And you can see that the attack wasn't successful. (Internal Server Error)
 
