@@ -73,8 +73,18 @@ __tests__              cloudguard-config.json
 buildspec.yml          my-pipeline.json       package.json           src
 $
 ``` 
+### cloudguard-config.json
 
-You'll need to create an S3 bucket.
+You'll need to generate CloudGuard API key and API secrets on CloudGuard console. In "cloudguard-config.json", replace the dummy values with your API key and secrets. 
+
+```
+{
+  "cloudguardAccessToken": "CloudGuard API Key:CloudGuard API Secret"
+}
+```
+
+### S3 Bucket
+You'll also need to create an S3 bucket.
 
 ```bash
 aws s3 mb s3://Your-Bucket-Name
