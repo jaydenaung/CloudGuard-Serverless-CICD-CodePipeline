@@ -218,7 +218,7 @@ artifacts:
 
 ## 3. Create a CodePipeline
 
-Now if you're like me who likes to do things using CLI (and I assume that there is already a CodeBuild project), you can edit "my-pipeline.json" which you can find in this repo, replace the values with your own values, and execute the following CLI.
+It is time to create your CICD pipeline on AWS. Now if you're like me who likes to do things using CLI (and I assume that there is already a CodeBuild project), you can edit "my-pipeline.json" which you can find in this repo, replace the values with your own values, and execute the following CLI.
 
 ```bash
 aws codepipeline create-pipeline --cli-input-json file://my-pipeline.json
@@ -228,17 +228,17 @@ Otherwise, please follow the step-by-step guide to create a CodePipeline.
 
 ### CodePipeline
 
-Now that we have a  let's create a codepipeline.
+Let's create your CICD Pipeline on AWS console!
 
 1. Go to "CodePipeline" on AWS console
 2. Create Pipeline
 3. Enter your pipeline's name
-4. If you already have an existing role, choose it. Or create a new role.
+4. If you already have an existing role, choose it. Otherwise, create a new role.
 
 ![header image](img/1-codepipeline-initial.png) 
 
 ### CodePipeline - Source Stage
-Then we can add source.
+Then we can add source - which is CodeCommit in this tutorial. You can add any source (e.g. Github)
 
 1. Choose "CodeCommit" (You can use Github or any code repo. If you're following along my tutorial, choose CodeCommit.)
 2. Choose Repository name - the CodeCommit repo that you've created earlier.
@@ -248,7 +248,7 @@ Then we can add source.
 ![header image](img/2-codepipeline-source.png) 
 
 ### CodePipeline - Build Stage
-We need to configure the build environment.
+This is the build stage and it's important. We need to first configure the build environment.
 
 1. Choose "CodeBuild" & choose your region.
 2. If you don't already have a codebuild project, choose "Create Project".
@@ -287,11 +287,11 @@ In Deploy stage, we'll have to do the following;
 
 ![header image](img/7-codepipeline-deploy-2.png) 
 
-Your pipeline has been created. Any change in your source code in AWS CodeCommit will trigger the pipeline. In build stage, CloudGuard will protect the serverless application by enabling Proact, and FSP which will be added to the Lambda function as a layer.
+Your pipeline has been created. Once a pipeline is created, any change in your source code in AWS CodeCommit will trigger the pipeline process. In build stage, CloudGuard will protect the serverless application by enabling Proact, and FSP which will be added to the Lambda function as a layer. The code will be scanned for vulnerabilities and embedded credentials by Proact first, and then FSP will be enabled on the function for runtime protection. This process will happen every time a codepipline update is triggered. 
 
 ## 5. Test your CodePipeline - Release Change
 
-At this point any change to the Lambda code will trigger the pipeline. You can observe the "Build" stage and see that Proact and FSP have been enabled on the function.
+Now that you've successfully created your CICD pipeline, any change to the Lambda code will trigger the pipeline at this point. So let's make some changes and monitor what happens. You can observe the "Build" stage and see that Proact and FSP have been enabled on the function.
 
 
 In your local CodeCommit repo, go to "src\cloudguardapp.js"
@@ -609,12 +609,13 @@ aws codepipeline delete-pipeline --name MyPipeline
 ```bash
 aws cloudformation delete-stack --stack-name cloudguard-serverless-app
 ```
+CONGRATULATIONS! It's quite a journey but we are here. You've successfully deployed CloudGuard workload protection on your serverless application, and integrated into your CICD pipeline on AWS! Now your serverless application has been secured by CloudGuard.
 
 ## Issues
 
 1. One of the issues you might probably encounter in CodePipeline is the build stage might fail due to IAM insufficient permissions. Double check that sufficient IAM permissions are given to the role.
 
-2. Make sure that all required software & dependencies are installed. (e.g. AWS CLI, SAM, Nodejs)
+2. Make sure that all required software & dependencies are installed. (e.g. AWS CLI, SAM, Nodejs) Otherwise, scipts like sam_deploy.sh won't run.
 
 ## Resources
 
