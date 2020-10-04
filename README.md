@@ -2,26 +2,27 @@
 
 While serverless functions are becoming more and more popular with cloud-native application developments, we've also started seeing  security challenges that come with the hype. Serverless applications are at risk of [OWASP top ten application attacks](https://owasp.org/www-project-serverless-top-10/). Even when serverless applications are running without a managed server, they will still execute code. If the code is written in a manner that doesn't follow security best practices, or if the function is using excessive permissions, they can be vulnerable to a wide range of security attacks.
 
-In this tutorial, I'll do a step-by-step walk-through of how CloudGuard workload protection secures your serverless applications, and integrates with your CICD pipeline. CloudGuard workload protection can assess your Lambda code for vulnerabilities and embedded sensitive credentials, excessive permissions being used by functions, and enable active protection & workload firewall for your serverless workloads. When integrated with CICD pipeline, CloudGuard can continuously protect your serverless application upon every new release.
+In this tutorial, I'll do a step-by-step walk-through of deploying CloudGuard workload protection on your serverless applications, and integrating with your CICD pipeline. CloudGuard workload protection can assess your Lambda code for vulnerabilities and embedded sensitive credentials, excessive permissions being used by functions, and enable active protection & workload firewall for your serverless workloads. When integrated with CICD pipeline, CloudGuard can continuously protect your serverless application upon every new release.
 
 This project contains source code (zip) of a sample serverless application that you can deploy with the command line interface (CLI) and scripts. Let's get started.
 
 # Pre-requisites
-You need the following tools on your computer:
+ You need the following tools on your computer:
 
 * AWS CLI [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
 * AWS SAM CLI - [Install the AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html).
 * Node.js - [Install Node.js 12](https://nodejs.org/en/), including the npm package management tool.
 
+Note: This is an **ALL-AWS** tutorial which means we'll be using CICD services provided by **AWS ONLY**. However, CloudGuard can be integrated with any other automation tools that can create CICD pipeline.
 
 ### CloudGuard CSPM Account
 
 I assume that you already have access to an CloudGuard CSPM account, and are somewhat familiar with it. Otherwise, go to https://secure.dome9.com/v2 and get your CloudGuard evaluation account.
 
 * CloudGuard Account 
-* CloudGurd API key and API Secret [How to generate CloudGuard API and API Secret](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk144514&partition=General&product=CloudGuard)
+* CloudGurd API key and API Secret. Check out [How to generate CloudGuard API and API Secret](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk144514&partition=General&product=CloudGuard)
 
-AWS roles needed to be created for the following services:
+AWS IAM roles needed to be created for the following services:
 
 * CodeCommit
 * CodeBuild
@@ -54,11 +55,10 @@ aws codecommit create-repository --repository-name cloudguard-serverless-cicd-co
 
 Then you'll need to do 'git clone your codepipline reop' via either SSH or HTTP.  It'll be an empty repository first. Then you will need to download the source files (zip) into your local repo [here](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/dev-serverless.zip) 
 
-- Unzip the source files (It will create a folder. You'll need to move the files from that folder to root directory.)
+- Unzip the source files (It will create a folder. You'll need to **move the files from that folder to root directory**.)
 - Remove the zip file (and the empty folder.)
 
-
-- Download the following files from this GitHub repo to your CodeCommit local directory.
+- Download the following files **from this GitHub repo to your CodeCommit local directory**.
 
 1. buildspec.yml
 2. sam_deploy.sh
