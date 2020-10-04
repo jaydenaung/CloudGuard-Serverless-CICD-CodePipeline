@@ -166,7 +166,7 @@ Successfully created/updated stack - chkp-jayden-dev-serverless-app in None
 Your serverless application has been deployed.
 ```
 
-Now that your cloudformation stack has been deployed, you also have a Lambda function now. (You can test the Lambda function on AWS web console.)
+Now that your cloudformation stack has been deployed, you also have a Lambda function which we will protect in this tutorial. (You can check out and test the Lambda function on AWS web console.)
 
 We'll need the ARN of the cloudformation stack as well. Go to AWS Web Console => Cloudformation => Stacks, and take note the ARN of the stack that has just been created. (It looks like this:  arn:aws:cloudformation:ap-southeast-1:116489363094:stack/chkp-serverless-app/a6d77c70-048a-11eb-8438-02e7c9cae2dc)
 
