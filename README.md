@@ -17,7 +17,7 @@ You need the following tools on your computer:
 ### CloudGuard CSPM Account
 
 * CloudGuard Account (https://secure.dome9.com/v2)
-* [CloudGuard API and API Secret](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk144514&partition=General&product=CloudGuard))
+* CloudGurd API key and API Secret [How to generate CloudGuard API and API Secret](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk144514&partition=General&product=CloudGuard)
 
 AWS roles needed to be created for the following services:
 
