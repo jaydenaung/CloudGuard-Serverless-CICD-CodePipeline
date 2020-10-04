@@ -6,7 +6,7 @@ In this tutorial, I'll do a step-by-step walk-through of how CloudGuard workload
 
 This project contains source code (zip) of a sample serverless application that you can deploy with the command line interface (CLI) and scripts. Let's get started.
 
-#Pre-requisites
+# Pre-requisites
 You need the following tools on your computer:
 
 * AWS CLI [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
@@ -16,7 +16,9 @@ You need the following tools on your computer:
 
 ### CloudGuard CSPM Account
 
-* CloudGuard Account (https://secure.dome9.com/v2)
+I assume that you already have access to an CloudGuard CSPM account, and are somewhat familiar with it. Otherwise, go to https://secure.dome9.com/v2 and get your CloudGuard evaluation account.
+
+* CloudGuard Account 
 * CloudGurd API key and API Secret [How to generate CloudGuard API and API Secret](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk144514&partition=General&product=CloudGuard)
 
 AWS roles needed to be created for the following services:
@@ -30,9 +32,9 @@ AWS roles needed to be created for the following services:
 
 The roles will be created as part of creating a codepipeline. Please take note that the role used by codebulid requires permission to access to a number of AWS resources such as S3. 
 
-## What exactly we will be doing
+# What exactly we will be doing
 
-We'll need to do the followings;
+In this tutorial, we'll be doing the followings;
 
 1. Create AWS CodeCommit repo \
 (Yes if you'd like to follow along my ALL-AWS tutorial, you'll need to create a CodeCommit repo which will be used in CICD pipeline. In this Github repo, I've uploaded Nodejs application source code zip file, buildspec.yml, and other scripts)
