@@ -2,7 +2,7 @@
 
 While serverless functions are becoming more and more popular with cloud-native application developments, we've also started seeing  security challenges that come with the hype. Serverless applications are at risk of [OWASP top ten application attacks](https://owasp.org/www-project-serverless-top-10/). Even when serverless applications are running without a managed server, they will still execute code. If the code is written in a manner that doesn't follow security best practices, or if the function is using excessive permissions, they can be vulnerable to a wide range of security attacks.
 
-In this tutorial, I'll do a step-by-step walk-through of how CloudGuard workload protection can secure your serverless applications, and integrate with your CICD pipeline. CloudGuard workload protection can assess your Lambda code for vulnerabilities and embedded sensitive credentials, excessive permissions being used by functions, and enable active protection & workload firewall for your serverless workloads. When integrated with CICD pipeline, CloudGuard can continuously protect your serverless application upon every new release.
+In this tutorial, I'll do a step-by-step walk-through of how CloudGuard workload protection secures your serverless applications, and integrates with your CICD pipeline. CloudGuard workload protection can assess your Lambda code for vulnerabilities and embedded sensitive credentials, excessive permissions being used by functions, and enable active protection & workload firewall for your serverless workloads. When integrated with CICD pipeline, CloudGuard can continuously protect your serverless application upon every new release.
 
 This project contains source code (zip) of a sample serverless application that you can deploy with the command line interface (CLI) and scripts. Let's get started.
 
@@ -24,7 +24,7 @@ AWS roles needed to be created for the following services:
 * CodeCommit
 * CodeBuild
 * CodeDeploy
-* CodePipeline
+* [CodePipeline](#CodePipeline)
 * Lambda Function 
 * Cloudformation
 
@@ -36,11 +36,12 @@ We'll need to do the followings;
 
 1. Create AWS CodeCommit repo \
 (Yes if you'd like to follow along my ALL-AWS tutorial, you'll need to create a CodeCommit repo which will be used in CICD pipeline. In this Github repo, I've uploaded Nodejs application source code zip file, buildspec.yml, and other scripts)
-2. Deploy a sample serverless application 
+2. Deploy sample serverless application
 3. Create a CodePipeline
 4. Integrate CloudGuard to protect the serverless app at build stage
 5. Test Your CodePipeline - Observe that any change in the codecommit repo will trigger the pipeline, and in the build stage, CloudGuard will be enabled and integrated to the serverless application
 6. Verification of CloudGuard protection - Verify that Proact and FSP for the serverless application are enabled on the CloudGuard console.
+
 
 ## 1. Create a CodeCommit Repository
 First you'll need to create a CodeCommit on AWS. You can do it on AWS web console or you can just execute the following command.
@@ -52,7 +53,7 @@ aws codecommit create-repository --repository-name cloudguard-serverless-cicd-co
 Then you'll need to do 'git clone your codepipline reop' via either SSH or HTTP.  It'll be an empty repository first. Then you will need to download the source files (zip) into your local repo [here](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/dev-serverless.zip) 
 
 - Unzip the source files (It will create a folder. You'll need to move the files from that folder to root directory.)
-- Remove the zip file (and the empty folder)
+- Remove the zip file (and the empty folder.)
 
 
 - Download the following files from this GitHub repo to your CodeCommit local directory.
@@ -223,7 +224,7 @@ aws codepipeline create-pipeline --cli-input-json file://my-pipeline.json
 
 Otherwise, please follow the step-by-step guide to create a CodePipeline.
 
-### CodePipeline - Initial setting
+### CodePipeline
 
 Now that we have a  let's create a codepipeline.
 
@@ -310,7 +311,7 @@ exports.cloudguardHandler = async () => {
     return message;
 }
 ```
-- Then, commit and push it again. This will trigger the pipeline change. Then obsere the activities on Pipeline on the AWS Console.
+- Then, commit and push it again. This will trigger the pipeline change. Then observe the activities on Pipeline on the AWS Console.
 
 ![header image](img/codepipeline-status.png)
 
