@@ -1,4 +1,4 @@
-# CloudGuard integration with CICD pipeline on AWS using Codepieline
+# CloudGuard integration with CICD pipeline on AWS using CodePipeline
 
 While serverless functions are becoming more and more popular with cloud-native application developments, we've also started seeing  security challenges that come with the hype. Serverless applications are at risk of [OWASP top ten application attacks](https://owasp.org/www-project-serverless-top-10/). Even when serverless applications are running without a managed server, they will still execute code. If the code is written in a manner that doesn't follow security best practices, or if the function is using excessive permissions, they can be vulnerable to a wide range of security attacks.
 
