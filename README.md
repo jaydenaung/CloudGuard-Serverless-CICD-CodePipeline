@@ -68,7 +68,8 @@ Then you'll need to do 'git clone your codepipline reop' via either SSH or HTTP.
 2. sam_deploy.sh
 3. cloudguard-config.json 
 4. my-pipeline.json (Optional)
-5. You may add .gitignore & README.md if you'd like
+5. codebuild-create-project.json (optional)
+6. You may add .gitignore & README.md if you'd like
 
 - Then you'll need to do `git init`, `git add -A`, `git commit -m "Your message"` and `git push`
 
