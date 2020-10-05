@@ -1,0 +1,47 @@
+{
+    "name": "My Serverless Project",
+    "description": "My Serverless Project",
+    "source": {
+        "type": "CODECOMMIT",
+        "location": "",
+        "gitCloneDepth": 1,
+        "gitSubmodulesConfig": {
+            "fetchSubmodules": false
+        },
+        "insecureSsl": false
+    },
+    "secondarySources": [],
+    "sourceVersion": "refs/heads/master",
+    "secondarySourceVersions": [],
+    "artifacts": {
+        "type": "NO_ARTIFACTS"},
+    "secondaryArtifacts": [],
+    "cache": {
+        "type": "NO_CACHE"
+    },
+    "environment": {
+        "type": "LINUX_CONTAINER",
+        "image": "aws/codebuild/standard:3.0",
+        "computeType": "BUILD_GENERAL1_SMALL",
+        "environmentVariables": [],
+        "privilegedMode": true,
+        "imagePullCredentialsType": "CODEBUILD"
+    },
+    "serviceRole": "",
+    "timeoutInMinutes": 60,
+    "queuedTimeoutInMinutes": 480,
+    "encryptionKey": "",
+    "tags": [],
+    "badgeEnabled": false,
+    "logsConfig": {
+        "cloudWatchLogs": {
+            "status": "ENABLED"
+        },
+        "s3Logs": {
+            "status": "DISABLED",
+            "encryptionDisabled": false
+        }
+    }
+}
+    
+
