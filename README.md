@@ -2,9 +2,11 @@
 
 While serverless functions are becoming more and more popular with cloud-native application developments, we've also started seeing  security challenges that come with the hype. Serverless applications are at risk of [OWASP top ten application attacks](https://owasp.org/www-project-serverless-top-10/). Even when serverless applications are running without a managed server, they will still execute code. If the code is written in a manner that doesn't follow security best practices, or if the function is using excessive permissions, they can be vulnerable to a wide range of security attacks.
 
-In this tutorial, I'll do a step-by-step walk-through of deploying CloudGuard workload protection on your serverless applications, and integrating with your CICD pipeline. CloudGuard workload protection can assess your Lambda code for vulnerabilities and embedded sensitive credentials, excessive permissions being used by functions, and enable active protection & workload firewall for your serverless workloads. When integrated with CICD pipeline, CloudGuard can continuously protect your serverless application upon every new release.
+Unlike traditional applications, Lambda functions can be triggered by a number of things including AWS services. They can be triggered by events such as files being uploaded to a S3 bucket. They can even be triggered by an email or SMS. A Lambda function with command injection vulnerability will allow an attacker to pass malicious payload which can steal the source code for further attacks - among other things. If the IAM role being used by a Lambda function has excessive permissions, the attacker can use the IAM role to scan and interact with other AWS services such as DynamoDB, etc. Ultimately, they can perform unauthorized and malicous actions such as delete and insert records. Now, these change the way we look at securing a miroservice such as a Lambda function in a cloud native application.
 
-This project contains source code (zip) of a sample serverless application that you can deploy with the command line interface (CLI) and scripts. Let's get started.
+In this tutorial, I'll do a step-by-step walk-through of deploying CloudGuard workload protection on your serverless applications, and integrating with your CICD pipeline. CloudGuard workload protection can assess your Lambda code for vulnerabilities and embedded sensitive credentials, excessive permissions being used by functions, and enable active protection & workload firewall for your serverless workloads. When integrated with CICD pipeline, CloudGuard can continuously protect your serverless application for every new release.
+
+This Github repo contains source code (zip) of a sample serverless application that you can deploy with the command line interface (CLI) or a simple automation script, and the configuration files (JSON files) that I've used. 
 
 # Pre-requisites
  You need the following tools on your computer:
@@ -15,12 +17,13 @@ This project contains source code (zip) of a sample serverless application that 
 
 Note: This is an **ALL-AWS** tutorial which means we'll be using CICD services provided by **AWS ONLY**. However, CloudGuard can be integrated with any other automation tools that can create CICD pipeline.
 
-### CloudGuard CSPM Account
+### AWS and CloudGuard 
 
-I assume that you already have access to an CloudGuard CSPM account, and are somewhat familiar with it. Otherwise, go to https://secure.dome9.com/v2 and get your CloudGuard evaluation account.
-
+* AWS Account
 * CloudGuard Account 
 * CloudGurd API key and API Secret. Check out [How to generate CloudGuard API and API Secret](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk144514&partition=General&product=CloudGuard)
+
+I assume that you already have access to an CloudGuard CSPM account, and are somewhat familiar with it. Otherwise, go to https://secure.dome9.com/v2 and get your CloudGuard evaluation account.
 
 AWS IAM roles needed to be created for the following services:
 
