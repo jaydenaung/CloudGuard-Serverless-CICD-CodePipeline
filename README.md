@@ -222,7 +222,15 @@ artifacts:
 
 ## 3. Create a CodePipeline
 
-It is time to create your CICD pipeline on AWS. Now if you're like me who likes to do things using CLI (and I assume that there is already a CodeBuild project), you can edit "my-pipeline.json" which you can find in this repo, replace the values with your own values, and execute the following CLI.
+It is time to create your CICD pipeline on AWS. Now if you're like me who likes to do things using CLI, you can create a CodePipeline and a CodeBuild projet in just two command lines. You will need to just edit "codebuild-create-project.json" and "my-pipeline.json" which you can find in this repo, replace the values with your own values, and execute the following CLI.
+
+* Create a CodeBuild Project
+
+```bash
+aws codebuild create-project --cli-input-json file://codebuild-create-project.json
+```
+
+* Create CodePipeline 
 
 ```bash
 aws codepipeline create-pipeline --cli-input-json file://my-pipeline.json
