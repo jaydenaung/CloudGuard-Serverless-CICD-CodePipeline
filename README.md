@@ -593,6 +593,8 @@ In a scenario where you expose Lambda function via HTTP endpoints provided by AP
 
 If you've turned on Function Self-Protection (FSP) on CloudGuard for that particular Lambda function, your application can be secured and protected by CloudGuard workload protection. FSP is run everytime the function is invoked. CloudGuard will block code injection attacks when the application is at runtime.
 
+![header image](img/Serverless-App.png)
+
 In below example, I've simulated a simple code injection attack using curl. This simulated attack is not a serious one - however, imagine what a real attack can do with the ability to leverage on similar code injection vulnerabilities. Well, as you can see, the attack wasn't successful when  Function Self Protection (Or Function Runtime Protection) is enabled on the function.(Internal Server Error)
 
 ![header image](img/attack-blocked.png) 
