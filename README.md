@@ -176,7 +176,7 @@ We'll need the ARN of the cloudformation stack as well. Go to AWS Web Console =>
 
 ## [buildspec.yml](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/buildspec.yml)
 
-Buildspec.yml instructs CodeBuild in build stage in terms of what to do. So this an important configuration file. In the buildsepc.yml, replace the following values with your own values (without []):
+Buildspec.yml instructs CodeBuild in build stage in terms of what to do - things like adding Proact and FSP to the function. So this an important configuration file. In the buildspec.yml, replace the following values with your own values (without []):
 
 1. AWS_REGION=[Your REGION]
 2. S3_BUCKET=[YOUR BUCKET NAME]
