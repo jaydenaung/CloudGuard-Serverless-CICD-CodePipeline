@@ -102,7 +102,7 @@ aws s3 mb s3://Your-Bucket-Name
 
 ### 2. Deploy a sample serverless application [sam_deploy.sh](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/sam_deploy.sh)
 
-Now is the time to deploy your serverless application. We'll be deploying a very simple nodejs Lambda function which just works for this lab. However, you can deploy ANY serverless. The CloudGuard integration will work as long as you follow the instructions. You can either use SAM command line to deploy or download the sam_deploy.sh script from this git repo to your local directory, and just execute it. (sam_deploy.sh is a simple script I developed for ease of deployment.) Please take note that this script will only work if you have SAM CLI installed. You will need to execute the script in the root directory (the one with template.yml in it), and it will ask for the following:
+Now is the time to deploy your serverless application. We'll be deploying a very simple nodejs Lambda function which just works for this lab. However, you can deploy ANY serverless application. The CloudGuard integration will work as long as you follow the instructions. You can either use SAM command line to deploy or download the sam_deploy.sh script from this git repo to your local directory, and just execute it. (sam_deploy.sh is a simple script I developed for ease of deployment.) Please take note that this script will only work if you have SAM CLI installed. You will need to execute the script in the root directory (the one with template.yml in it), and it will ask for the following:
 
 1. Your S3 Bucket Name (The one that you've just created.)
 2. Your Cloudformation Stack name 
@@ -300,7 +300,7 @@ In Deploy stage, we'll have to do the following;
 
 ![header image](img/7-codepipeline-deploy-2.png) 
 
-Your pipeline has been created. Once a pipeline is created, any change in your source code in AWS CodeCommit will trigger the pipeline process. In build stage, CloudGuard will protect the serverless application by enabling Proact, and FSP which will be added to the Lambda function as a layer. The code will be scanned for vulnerabilities and embedded credentials by Proact first, and then FSP will be enabled on the function for runtime protection. This process will happen every time a codepipline update is triggered. 
+Now, your CodePipeline has been created! Once a pipeline is created, any change in your source code in AWS CodeCommit will trigger the pipeline process. In build stage, CloudGuard will protect the serverless application by enabling Proact, and FSP which will be added to the Lambda function as a layer. The code will be scanned for vulnerabilities and embedded credentials by Proact first, and then FSP will be enabled on the function for runtime protection. This process will happen every time a codepipline update is triggered. 
 
 ## 5. Test your CodePipeline - Release Change
 
@@ -608,7 +608,7 @@ In below example, I've simulated a simple code injection attack using curl. This
 
 ![header image](img/attack-blocked.png) 
 
-> On CloudGuard, you can see that the code injection attack was **blocked** by CloudGuard. 
+> On CloudGuard console, you can see that the code injection attack was **blocked** by CloudGuard. 
 
 ![header image](img/cloudguard-alert.png) 
 
