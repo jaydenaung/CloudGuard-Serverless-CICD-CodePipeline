@@ -633,5 +633,9 @@ CONGRATULATIONS! It's quite a journey but we are here. You've successfully deplo
 
 1. [Check Point CloudGuard Workload Protection](https://www.checkpoint.com/products/workload-protection/#:~:text=CloudGuard%20Workload%20Protection%2C%20part%20of,automating%20security%20with%20minimal%20overhead.)
 
+2. [CloudGuard Workload (Protego) Examples](https://github.com/dome9/protego-examples)
+
+3. Here is another great resource - [CloudGuard integration with AWS Pipeline by Dean Houari](https://github.com/chkp-dhouari/AWSCICD-CLOUDGUARD)
+
 
 ![header image](img/cloudguard.png) 
