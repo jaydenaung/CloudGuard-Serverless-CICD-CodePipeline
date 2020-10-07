@@ -635,7 +635,7 @@ CONGRATULATIONS! It's quite a journey but we are here. You've successfully deplo
 
 2. [CloudGuard Workload (Protego) Examples](https://github.com/dome9/protego-examples)
 
-3. Here is another great resource - [CloudGuard integration with AWS Pipeline by Dean Houari](https://github.com/chkp-dhouari/AWSCICD-CLOUDGUARD)
+3. Here is another great tutorial  - [CloudGuard integration with AWS Pipeline by Dean Houari](https://github.com/chkp-dhouari/AWSCICD-CLOUDGUARD)
 
 
 ![header image](img/cloudguard.png) 
