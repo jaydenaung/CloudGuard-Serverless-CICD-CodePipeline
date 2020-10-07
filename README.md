@@ -168,7 +168,7 @@ CREATE_COMPLETE                            AWS::CloudFormation::Stack           
 
 Successfully created/updated stack - chkp-jayden-dev-serverless-app in None
 
-Your serverless application has been deployed.
+Your serverless application has been deployed. Observe that there is "out.yml" now which was basically an output file of SAM package command used in the sam_deploy.sh script.
 ```
 
 Now that your cloudformation stack has been deployed, you also have a Lambda function which we will protect in this tutorial. (You can check out and test the Lambda function on AWS web console.)
@@ -208,8 +208,8 @@ phases:
       # Use AWS SAM and CloudFormation to package the app first
       - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml
    # commands:
-      # Adding FSP to the function
-      - cloudguard fsp -c arn:aws:cloudformation:ap-southeast-1:116489363094:stack/dev-chkp-cloudguard-serverless-app/a6d77c70-048a-11eb-8438-02e7c9cae2dc
+      # Adding FSP to the function. REPLACE THE FOLLOWING WITH YOUR CLOUDFORMATION STACK ARN
+      - cloudguard fsp -c arn:aws:cloudformation:ap-southeast-1:AWSID:stack/your-cft-stack-ARN
 artifacts:
   type: zip
   files:
@@ -218,7 +218,7 @@ artifacts:
 
 ## 3. Create a CodePipeline
 
-It is time to create your CICD pipeline on AWS. Now if you're like me who likes to do things using CLI, you can create a CodePipeline and a CodeBuild projet in just two command lines. You will need to just edit "codebuild-create-project.json" and "my-pipeline.json" which you can find in this repo, replace the values with your own values, and execute the following CLI.
+It is time to create your CICD pipeline on AWS. Now if you're like me who likes to do things using CLI, you can create a CodePipeline and a CodeBuild project in just two command lines. You will need to just edit "codebuild-create-project.json" and "my-pipeline.json" which you can find in this repo, replace the values with your own values, and execute the following CLI.
 
 * Create a CodeBuild Project
 
