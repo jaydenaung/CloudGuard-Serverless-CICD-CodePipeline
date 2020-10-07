@@ -197,19 +197,18 @@ phases:
       ## Not required 
   build:
     commands:
-      # CloudGuard workload API
+      - echo Build started on `date`
       - npm install -g https://artifactory.app.protego.io/cloudguard-serverless-plugin.tgz
-      # Set your own AWS region variable
+      # Set your AWS region variable
       - export AWS_REGION=ap-southeast-1
-      # Configure CloudGuard Workload Proact
+      # Configure the CloudGuard Workload Proact security on the SAM template
+      - echo Enabling Proact
       - cloudguard proact -m template.yml
-      # Exporting S3 bucket name variable
+      # Set the S3 bucket name variable
       - export S3_BUCKET=chkp-jayden-serverless-apps-source
-      # Use AWS SAM and CloudFormation to package the app first
+      # Use AWS SAM to package the application by using AWS CloudFormation
+      - echo Enabling FSP
       - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml
-   # commands:
-      # Adding FSP to the function. REPLACE THE FOLLOWING WITH YOUR CLOUDFORMATION STACK ARN
-      - cloudguard fsp -c arn:aws:cloudformation:ap-southeast-1:AWSID:stack/your-cft-stack-ARN
 artifacts:
   type: zip
   files:
