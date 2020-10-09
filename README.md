@@ -57,7 +57,7 @@ First you'll need to create a CodeCommit on AWS. You can do it on AWS web consol
 aws codecommit create-repository --repository-name cloudguard-serverless-cicd-code-repo --repository-description "CloudGuard Serverless CICD Pipeline Demo Repo"
 ```
 
-Then you'll need to do 'git clone your codepipline reop' via either SSH or HTTP.  It'll be an empty repository first. Then you will need to download the source files (zip) into your local repo [here](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/dev-serverless.zip) 
+Then you'll need to do 'git clone' via either SSH or HTTP.  It'll be an empty repository first. Then you will need to download the source files (zip) into your local repo [here](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/dev-serverless.zip) 
 
 - Unzip the source files (It will create a folder. You'll need to **move the files from that folder to root directory**.)
 - Remove the zip file (and the empty folder.)
