@@ -217,7 +217,7 @@ phases:
       - echo Enabling Proact
       - cloudguard proact -m template.yml
       # Set the S3 bucket name variable
-      - export S3_BUCKET=chkp-jayden-serverless-apps-source
+      - export S3_BUCKET=YOUR-BUCKET-NAME
       # Use AWS SAM to package the application by using AWS CloudFormation
       - echo Enabling FSP
       - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml
