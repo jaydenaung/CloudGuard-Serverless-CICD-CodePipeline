@@ -102,7 +102,7 @@ aws s3 mb s3://Your-Bucket-Name
 
 ### 2. Deploy a sample serverless application [sam_deploy.sh](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/sam_deploy.sh)
 
-Now is the time to deploy your serverless application. We'll be deploying a very simple nodejs Lambda function which just works for this lab. However, you can deploy ANY serverless application. The CloudGuard integration will work as long as you follow the instructions. You can either use SAM command line to deploy or download the sam_deploy.sh script from this git repo to your local directory, and just execute it. (sam_deploy.sh is a simple script I developed for ease of deployment.) Please take note that this script will only work if you have SAM CLI installed. You will need to execute the script in the root directory (the one with template.yml in it), and it will ask for the following:
+Now is the time to deploy your serverless application. We'll be deploying a very simple nodejs Lambda function which just works for this lab. However, you can deploy ANY serverless application. The CloudGuard integration will work as long as you follow the instructions. You can either use SAM command line to deploy or download the sam_deploy.sh script from this git repo to your local directory, and just execute it. sam_deploy.sh is a simple script I developed for ease of deployment. Please take note that this script will only work if you have SAM CLI installed, and only on Linux/MacOS. [If you're on Windows](#If-you-are-on-Windows), execute the two SAM commands which I'll show you after the script output. You will need to execute the script in the root directory (the one with template.yml in it), and it will ask for the following:
 
 1. Your S3 Bucket Name (The one that you've just created.)
 2. Your Cloudformation Stack name 
@@ -169,6 +169,18 @@ CREATE_COMPLETE                            AWS::CloudFormation::Stack           
 Successfully created/updated stack - chkp-jayden-dev-serverless-app in None
 
 Your serverless application has been deployed. Observe that there is "out.yml" now which was basically an output file of SAM package command used in the sam_deploy.sh script.
+```
+
+### If-you-are-on-Windows
+
+If you're on Windows, execute the following two command lines in the directory where template.yml is.
+
+```bash
+
+sam package --template-file template.yml --s3-bucket YOUR-BUCKET-NAME --output-template-file out.yml
+
+sam deploy --template-file ./out.yml --stack-name YOUR-CFT-STACK-NAME --capabilities CAPABILITY_IAM
+
 ```
 
 Now that your cloudformation stack has been deployed, you also have a Lambda function which we will protect in this tutorial. (You can check out and test the Lambda function on AWS web console.)
