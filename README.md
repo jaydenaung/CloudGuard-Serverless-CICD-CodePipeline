@@ -642,6 +642,9 @@ CONGRATULATIONS! It's quite a journey but we are here. You've successfully deplo
 
 2. Make sure that all required software & dependencies are installed. (e.g. AWS CLI, SAM, Nodejs) Otherwise, scipts like sam_deploy.sh won't run.
 
+
+![header image](img/cloudguard.png) 
+
 ## Resources
 
 1. [Check Point CloudGuard Workload Protection](https://www.checkpoint.com/products/workload-protection/#:~:text=CloudGuard%20Workload%20Protection%2C%20part%20of,automating%20security%20with%20minimal%20overhead.)
@@ -649,6 +652,3 @@ CONGRATULATIONS! It's quite a journey but we are here. You've successfully deplo
 2. [CloudGuard Workload (Protego) Examples](https://github.com/dome9/protego-examples)
 
 3. Here is another good tutorial you might want to check out - [CloudGuard integration with AWS Pipeline by Dean Houari](https://github.com/chkp-dhouari/AWSCICD-CLOUDGUARD)
-
-
-![header image](img/cloudguard.png) 
