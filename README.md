@@ -221,6 +221,8 @@ phases:
       # Use AWS SAM to package the application by using AWS CloudFormation
       - echo Enabling FSP
       - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template template-export.yml
+      # Add the Function Runtime Protection (Or Function Self Protection) to your function. You need to replace cloudformation stack arn with the one you've deployed!
+      - cloudguard fsp -c arn:aws:cloudformation:YOUR-CFT-STACK-ARN
 artifacts:
   type: zip
   files:
