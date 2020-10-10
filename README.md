@@ -171,7 +171,7 @@ Successfully created/updated stack - chkp-jayden-dev-serverless-app in None
 Your serverless application has been deployed. Observe that there is "out.yml" now which was basically an output file of SAM package command used in the sam_deploy.sh script.
 ```
 
-### If-you-are-on-Windows
+### If you are on Windows
 
 If you're on Windows, execute the following two command lines in the directory where template.yml is.
 
