@@ -47,7 +47,7 @@ In this tutorial, we'll be doing the followings;
 4. Integrate CloudGuard to protect the serverless app at build stage
 5. Test Your CodePipeline - Observe that any change in the codecommit repo will trigger the pipeline, and in the build stage, CloudGuard will be enabled and integrated to the serverless application
 6. Verification of CloudGuard protection - Verify that Proact and FSP for the serverless application are enabled on the CloudGuard console.
-7. [Code-Injection-Attack-Simulation](#Code-Injection-Attack-Simulation)
+7. [Code Injection Attack Simulation](#Code-Injection-Attack-Simulation)
 
 
 ## 1. Create a CodeCommit Repository
@@ -602,7 +602,7 @@ You can log on to your CloudGuard console, and go to the Serverless module or Pr
 
 ![header image](img/cloudguard-1.png) 
 
-## Code-Injection-Attack-Simulation
+## Code Injection Attack Simulation
 
 Initially, this section wasn't part of the tutorial. However, I'd like to share how CloudGuard workload protection responds to attacks like code injection when Function Self-Protection (FSP) is turned on. So I added this.
 
