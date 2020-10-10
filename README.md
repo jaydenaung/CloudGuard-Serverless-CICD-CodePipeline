@@ -8,6 +8,8 @@ In this tutorial, I'll do a step-by-step walk-through of deploying CloudGuard wo
 
 This Github repo contains source code (zip) of a sample serverless application that you can deploy with the command line interface (CLI) or a simple automation script, and the configuration files (JSON files) that I've used. 
 
+![header image](img/cloudguard-cicd-aws.png)
+
 # Pre-requisites
  You need the following tools on your computer:
 
