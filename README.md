@@ -53,13 +53,13 @@ In this tutorial, we'll be doing the followings;
 
 
 ## 1. Create a CodeCommit Repository
-First you'll need to create a CodeCommit on AWS. You can do it on AWS web console or you can just execute the following command.
+First you'll need to create a CodeCommit repo on AWS. This is required for hosting source files. Once AWS CodePipeline is set up later in this tutorial, Pipeline update will be triggered if you change any source file in this repo. You can do it on AWS web console or you can just execute the following command:
 
 ```bash
 aws codecommit create-repository --repository-name cloudguard-serverless-cicd-code-repo --repository-description "CloudGuard Serverless CICD Pipeline Demo Repo"
 ```
 
-Then you'll need to do 'git clone' via either SSH or HTTP.  It'll be an empty repository first. Then you will need to download the source files (zip) into your local repo [here](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/dev-serverless.zip) 
+Then you'll need to do 'git clone' via either SSH or HTTP.  It'll be an empty repository first. Then you will need to download the source files (zip) into your local repo [here](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/dev-serverless.zip). These source files will be used to deploy your serverless function.  
 
 - Unzip the source files (It will create a folder. You'll need to **move the files from that folder to root directory**.)
 - Remove the zip file (and the empty folder.)
@@ -104,7 +104,9 @@ aws s3 mb s3://Your-Bucket-Name
 
 ### 2. Deploy a sample serverless application [sam_deploy.sh](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/sam_deploy.sh)
 
-Now is the time to deploy your serverless application. We'll be deploying a very simple nodejs Lambda function which just works for this lab. However, you can deploy ANY serverless application. The CloudGuard integration will work as long as you follow the instructions. You can either use SAM command line to deploy or download the sam_deploy.sh script from this git repo to your local directory, and just execute it. sam_deploy.sh is a simple script I developed for ease of deployment. **Please take note that this script will only work if you have SAM CLI installed, and only on Linux/MacOS.** [If you're on Windows](#If-you-are-on-Windows), execute the two SAM commands which I'll show you after the script output. You will need to execute the script in the root directory (the one with template.yml in it), and it will ask for the following:
+Now is the time to deploy your serverless application. We'll be deploying a very simple nodejs Lambda function which just works for this lab. However, you can deploy ANY serverless application. The CloudGuard integration will work with any Lambda application as long as you follow the instructions. 
+
+You can either use SAM command line to deploy or download the sam_deploy.sh script from this git repo to your local directory, and just execute it. sam_deploy.sh is a simple script I developed for ease of deployment. **Please take note that this script will only work if you have SAM CLI installed, and only on Linux/MacOS.** [If you're on Windows](#If-you-are-on-Windows), execute the two SAM commands which I'll show you after the script output. You will need to execute the script in the root directory (the one with template.yml in it), and it will ask for the following:
 
 1. Your S3 Bucket Name (The one that you've just created.)
 2. Your Cloudformation Stack name 
@@ -191,7 +193,7 @@ We'll need the ARN of the cloudformation stack as well. Go to AWS Web Console =>
 
 ## [buildspec.yml](https://github.com/jaydenaung/cloudguard-serverless-cicd-codepipeline/blob/master/buildspec.yml)
 
-Buildspec.yml instructs CodeBuild in build stage in terms of what to do - things like adding Proact and FSP to the function. So this an important configuration file. In the buildspec.yml, replace the following values with your own values (without []):
+Buildspec.yml instructs CodeBuild in build stage in terms of what to do - things like adding Proact and FSP to the function. So this an ***important configuration file***. In the buildspec.yml, replace the following values with your own values (without []):
 
 1. AWS_REGION=[Your REGION]
 2. S3_BUCKET=[YOUR BUCKET NAME]
@@ -233,7 +235,7 @@ artifacts:
 
 ## 3. Create a CodePipeline
 
-It is time to create your CICD pipeline on AWS. Now if you're like me who likes to do things using CLI, you can create a CodePipeline and a CodeBuild project in just two command lines. You will need to just edit "codebuild-create-project.json" and "my-pipeline.json" which you can find in this repo, replace the values with your own values, and execute the following CLI.
+It is time to create your CICD pipeline on AWS. Now if you're like me who like to do things using CLI, you can create a CodePipeline and a CodeBuild project in just two command lines. You will need to just edit "codebuild-create-project.json" and "my-pipeline.json" which you can find in this repo, replace the values with your own values, and execute the following CLI.
 
 * Create a CodeBuild Project
 
@@ -310,14 +312,14 @@ In Deploy stage, we'll have to do the following;
 
 ![header image](img/7-codepipeline-deploy-2.png) 
 
-Now, your CodePipeline has been created! Once a pipeline is created, any change in your source code in AWS CodeCommit will trigger the pipeline process. In build stage, CloudGuard will protect the serverless application by enabling Proact, and FSP which will be added to the Lambda function as a layer. The code will be scanned for vulnerabilities and embedded credentials by Proact first, and then FSP will be enabled on the function for runtime protection. This process will happen every time a codepipline update is triggered. 
+Now, your CodePipeline has been created! Once a pipeline is created, any change in your source code in AWS CodeCommit will trigger the pipeline process. In build stage, CloudGuard will protect the serverless application by enabling Proact, and FSP which will be added to the Lambda function as a layer. The code will be scanned for vulnerabilities and embedded credentials by Proact first, and then FSP will be enabled on the function for runtime protection. This process will happen every time a CodePipeline update is triggered. 
 
 ## 5. Test your CodePipeline - Release Change
 
 Now that you've successfully created your CICD pipeline, any change to the Lambda code will trigger the pipeline at this point. So let's make some changes and monitor what happens. You can observe the "Build" stage and see that Proact and FSP have been enabled on the function.
 
 
-In your local CodeCommit repo, go to "src\cloudguardapp.js"
+In your ***local CodeCommit directory***, go to "src\cloudguardapp.js"
 
 And change the **const message** to something else. 
 
@@ -336,7 +338,7 @@ exports.cloudguardHandler = async () => {
     return message;
 }
 ```
-- Then, commit and push it again. This will trigger the pipeline change. Then observe the activities on Pipeline on the AWS Console.
+- Then, in your local Git directory, do `git add -A`, `git commit -m "message"` and `git push`. This will trigger the pipeline change. Then observe the activities on Pipeline on the AWS Console.
 
 ![header image](img/codepipeline-status.png)
 
@@ -586,14 +588,14 @@ Protego - FSP (1.5.19) Summary:
 [Container] 2020/10/03 02:48:13 Found 1 file(s)
 ```
 
-Finally, you can check and verify that each stage of your CodePipline has been successfully completed!
+Finally, you can check and verify that each stage of your CodePipline has been successfully completed! You can observe in the log files how CloudGuard was downloaded and triggered, how Proact and FSP were enabled, and how the Build was completed (and then the stage was changed to Deploy.)
 
 
 ![header image](img/8-codepipeline-succeded.png) 
 
 ## 6. Verification of CloudGuard protection
 
-On AWS Console, go to "Lambda", and the function that we've enabled the protection on. Verify that a layer has been added to the function.
+On AWS Console, go to "Lambda", and the function that we've deployed and enabled the CloudGuard protection on just now. Verify that a layer has been added to the function.
 
 ![header image](img/aws-lambda-function-layer.png) 
 
