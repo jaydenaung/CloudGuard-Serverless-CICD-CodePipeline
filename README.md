@@ -640,6 +640,9 @@ aws cloudformation delete-stack --stack-name cloudguard-serverless-app
 ```
 CONGRATULATIONS! It's quite a journey but we are here. You've successfully deployed CloudGuard workload protection on your serverless application, and integrated into your CICD pipeline on AWS! Now your serverless application has been secured by CloudGuard.
 
+Happy DevSecOps-ing!
+Jayden Aung
+
 ## Issues
 
 1. One of the issues you might probably encounter in CodePipeline is the build stage might fail due to IAM insufficient permissions. Double check that sufficient IAM permissions are given to the role.
