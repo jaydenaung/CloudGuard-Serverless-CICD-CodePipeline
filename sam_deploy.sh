@@ -1,6 +1,5 @@
 #!/bin/bash
-#A script to deploy serverless application using SAM
-# This script sends CloudGuard Logs from Check Point Management Server to CloudWatch proxy instance.
+# A script to deploy serverless application using SAM
 # Author: Jayden Kyaw Htet Aung - Check Point Software Technologies
 
 read -p "Enter S3 Bucket Name: " s3bucket
